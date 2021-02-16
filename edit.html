@@ -4,23 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
     <title>Edit CV</title>
 </head>
 
-<body>
+<body>   
     <nav>
         <ul>
             <li class="menu"><a href="index.html">Home</a></li>
             <li class="menu"><a href="account.html">Create account</a></li>
             <li class="menu"><a href="edit.html">Edit CV</a></li>
             <li class="menu"><a href="feedback.html">Feedback</a></li>
-            <li class="menu"><a href="settings.html">Settings page</a></li>
+            <li class="menu"><a href="settings.html">Settings</a></li>
         </ul>
     </nav>
-    <h1>Edit your CV</h1>
-    <p>
-        Some paragraph
-    </p>
-</body>
+    
+    <h1 style="margin-top:50px;margin-left:20px;">Edit your CV</h1>
 
+    <form style="margin-left:20px;">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname">
+        <br>
+        <br>
+        <input type="submit" value="Submit" style="background-color: #d3e0ea;">
+      </form>
+
+      <footer>
+        <p id="footertext">Author: CV ASSISTANT</p>
+        <p id="footertext"><a href="mailto:hege@example.com">hege@example.com</a></p>
+      </footer>
+
+</body>    
 </html>
