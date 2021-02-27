@@ -3,6 +3,7 @@
 body {
     background-color: lightcyan;
     color: darkblue;
+    margin:0;
 }
 
 #logo { 
@@ -34,27 +35,21 @@ h1, h2 {
 
 nav {
     font-size:30px;
-    background-size: cover;
-    height:125px;
-    position: -webkit-sticky;
 	position: sticky;
-	top: 0;
+	top: 0px;
     background-color: #276678;
 }
     
 nav ul {
     list-style-type: none;
-    margin: 0;
     float:right;
     margin:35px;
 }
 
 nav ul li.menu {
-        float:left;
-        padding:10px;
-        margin-right:10px;
-        height:30px;
-        height: 20px;      
+    float:left;
+    padding:10px;
+    margin-right:10px;
 }
 
 nav ul li.menu a {
@@ -80,12 +75,17 @@ footer {
     height: 100px;
     background-color: #276678;
     color:white;
+    margin-bottom:0px;
+    position:relative;
+    height:50px;
 }
 
 footer a {
     color:white;
+    margin-left:75%;
 }
 
 #footertext {
     margin-left:20px;
+    padding-top:15px;
 }
