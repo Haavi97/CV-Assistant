@@ -1,31 +1,52 @@
 @charset "utf-8";
 
 body {
-    background-color: #f6f5f5;
-    color: #1687a7;
+    background-color: lightcyan;
+    color: darkblue;
 }
 
+#logo { 
+	position:fixed;
+    padding: 0px 0; 
+	top:0; 
+	left:0; 
+} 
+
+.button {
+    text-decoration: none;
+    padding:5px;
+    color: #276678;
+    border-radius: 290486px;
+    font-size: 0.6em;
+    letter-spacing: 0.2em;
+}
+
+.button:hover {
+    transition: none 400ms ease-out;
+    transition-property: color, background;
+    background-color: #1687a7;
+    color: white;
+}
 
 h1, h2 {
-    color: #276678;
+    color: darkblue;
 }
 
 nav {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 600px;
-    font-size:larger;
-    padding:10px;
-
+    font-size:30px;
+    background-size: cover;
+    height:125px;
+    position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+    background-color: #276678;
 }
     
 nav ul {
     list-style-type: none;
     margin: 0;
-    padding:10px;
-    
+    float:right;
+    margin:35px;
 }
 
 nav ul li.menu {
@@ -39,14 +60,14 @@ nav ul li.menu {
 nav ul li.menu a {
     text-decoration: none;
     padding:5px;
-    color: #1687a7;
+    color: white;
     border-radius: 290486px;
     font-size: 0.6em;
     letter-spacing: 0.2em;
 }
 
 nav ul li.menu a:hover {
-    transition: none 300ms ease-out;
+    transition: none 400ms ease-out;
     transition-property: color, background;
     background-color: #1687a7;
     color: white;
@@ -57,7 +78,7 @@ footer {
     bottom: 0;
     width: 100%;
     height: 100px;
-    background-color: #1687a7;
+    background-color: #276678;
     color:white;
 }
 
