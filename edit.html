@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit CV</title>
+    <link rel="stylesheet" href="style/main.css">
 </head>
 
 <body>
     <nav>
+        <img src="style/logo.png" style="padding:20px;"></img>
         <ul>
             <li class="menu"><a href="index.html">Home</a></li>
             <li class="menu"><a href="account.html">Create account</a></li>
@@ -18,9 +20,20 @@
         </ul>
     </nav>
     <h1>Edit your CV</h1>
-    <p>
-        Some paragraph
-    </p>
+    <form action="/send.php" method="get" name="basic_data">
+        <!--TODO!-->
+        <!--Auto fill it if the system already has the info-->
+        <!--Break styling to be added to CSS for making it higher or change the padding of the input-->
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" maxlength=40 required><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" maxlength=40 required><br>
+        <label for="lname">Phone number:</label>
+        <input type="text" id="lname" name="phone" maxlength=15 pattern="+([0-9]|\s)*" required title="Phone number starting with country prefix"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please type a valid email. E.g.: example@examle.com"><br>
+        <input type="submit" value="Save">
+    </form>
 </body>
 
 </html>
