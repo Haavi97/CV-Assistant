@@ -1,0 +1,40 @@
+input[type=button],
+input[type=submit],
+input[type=reset] {
+    text-decoration: none;
+    background-color: #276678;
+    border-radius: 290486px;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 0.6em;
+    letter-spacing: 0.2em;
+}
+
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=reset]:hover {
+    transition: none 400ms ease-out;
+    transition-property: color, background;
+    background-color: #1687a7;
+    color: white;
+}
+
+input#save_button {
+    font-size: 1em;
+}
+
+body#editpage table {
+    width: 90%;
+}
+
+body#editpage td {
+    min-width: 20%;
+    text-align: left;
+}
+
+h2 {
+    text-align: left;
+}
