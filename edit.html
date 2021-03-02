@@ -10,7 +10,8 @@
     <link rel="icon" href="style/icon.png">
 </head>
 
-<body id="editpage">
+
+    <!--NAVIGATION BAR-->
     <nav>
         <img src="style/logo.png" style="padding:20px;"></img>
         <ul>
@@ -19,10 +20,16 @@
             <li class="menu"><a href="login.html">Login</a></li>
             <li class="menu"><a href="edit.html">Edit CV</a></li>
             <li class="menu"><a href="feedback.html">Feedback</a></li>
-            <li class="menu"><a href="settings.html">Settings page</a></li>
+            <li class="menu"><a href="settings.html">Settings</a></li>
 
         </ul>
     </nav>
+
+    <!--PAGE CONTENT-->
+    <body>
+    <div id="pagecontent">
+        <p>
+            WILL APPEAR IN AN ACTIVE USER SESSION <br> </p>
     <h1>Edit your CV</h1>
     <form action="/send.php" method="get" name="basic_data">
         <!--TODO!-->
@@ -143,6 +150,9 @@
 
         <input type="submit" id="save_button" value="Save">
     </form>
+</div>
+
+<!--PAGE FOOTER-->
     <footer>
         <span id="footertext">Endla 14 Kristiine, Tallinn, Harjumaa</span>
         <a href="tel:372-948-9494">+ 372 948 9494</a>
