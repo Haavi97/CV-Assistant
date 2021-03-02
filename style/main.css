@@ -10,7 +10,7 @@ body ul {
 }
 
 div#pagecontent {
-    margin-left:10%;
+    margin-left: 10%;
 }
 
 #logo {
@@ -117,6 +117,25 @@ div#cv_img {
 }
 
 .wrapper button:hover {
+    transition: none 400ms ease-out;
+    transition-property: color, background;
+    background-color: #1687a7;
+    color: white;
+}
+
+.login_button {
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    background-color: #276678;
+    color: white;
+    border-radius: 290486px;
+    border: none;
+    font-size: 0.6em;
+    letter-spacing: 0.2em;
+}
+
+.login_button:hover {
     transition: none 400ms ease-out;
     transition-property: color, background;
     background-color: #1687a7;
