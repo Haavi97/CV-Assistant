@@ -1,3 +1,7 @@
+<?php
+    include 'main.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,13 +19,9 @@
     <nav>
         <img src="style/logo.png" style="padding:20px;"></img>
         <ul>
-            <li class="menu"><a href="index.html">About</a></li>
-            <li class="menu"><a href="FAQ.html">FAQ</a></li>
-            <li class="menu"><a href="login.html">Login</a></li>
-            <li class="menu"><a href="edit.html">Edit CV</a></li>
-            <li class="menu"><a href="feedback.html">Feedback</a></li>
-            <li class="menu"><a href="settings.html">Settings</a></li>
-
+            <?php
+            echo $nav_menu
+            ?>
         </ul>
     </nav>
 
