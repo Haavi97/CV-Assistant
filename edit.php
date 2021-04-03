@@ -43,22 +43,22 @@
             </tr>
             <tr>
                 <td><label for="fname">First name:</label></td>
-                <td><input type="text" id="fname" name="fname" maxlength=40 required value="James"></td>
+                <td><input type="text" id="fname" name="fname" maxlength=40 required placeholder="James"></td>
                 <td><label for="lname">Phone number:</label></td>
-                <td><input type="text" id="lname" name="phone" maxlength=15 pattern="+([0-9]|\s)*" required title="Phone number starting with country prefix" value="+372 620 2002"></td>
+                <td><input type="text" id="lname" name="phone" maxlength=15 pattern="+([0-9]|\s)*" required title="Phone number starting with country prefix" placeholder="+372 xxx xxxx"></td>
             </tr>
             <tr>
                 <td><label for="lname">Last name:</label></td>
-                <td><input type="text" id="lname" name="lname" maxlength=40 required value="Smith"></td>
+                <td><input type="text" id="lname" name="lname" maxlength=40 required placeholder="Smith"></td>
                 <td><label for="email">Email:</label></td>
-                <td><input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please type a valid email. E.g.: example@examle.com" required value="jsmith@taltech.ee">
+                <td><input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please type a valid email. E.g.: example@examle.com" required placeholder="jsmith@taltech.ee">
                 </td>
             </tr>
             <tr>
                 <td><label for="nationality">Nationality:</label></td>
-                <td><input type="text" id="nationality" name="nationality" value="Estonian"></td>
+                <td><input type="text" id="nationality" name="nationality" placeholder="Estonian"></td>
                 <td><label for="birth">Date of birth:</label></td>
-                <td><input type="text" id="birth" name="birth" maxlength=40 required value="20/12/1992"></td>
+                <td><input type="text" id="birth" name="birth" maxlength=40 required placeholder="20/12/1992"></td>
             </tr>
             <tr>
                 <td><label for="sex">Sex:</label></td>
@@ -80,10 +80,10 @@
             </tr>
             <tr>
                 <td><label for="hschool">High school</label></td>
-                <td><input type="text" id="hschool" name="hschool" maxlength=40 required value="International School">
+                <td><input type="text" id="hschool" name="hschool" maxlength=40 required placeholder="International School">
                 </td>
                 <td><label for="hschool_year">Graduation:</label></td>
-                <td><input type="text" id="hschool_year" name="hschool_year" maxlength=4 max=2021 required value="2005">
+                <td><input type="text" id="hschool_year" name="hschool_year" maxlength=4 max=2021 required placeholder="2005">
                 </td>
             </tr>
             <tr>
@@ -94,7 +94,7 @@
             </tr>
             <tr>
                 <td><label for="university">University:</label></td>
-                <td><input type="text" id="university" name="university" maxlength=40 value="TalTech"></td>
+                <td><input type="text" id="university" name="university" maxlength=40 placeholder="TalTech"></td>
                 <td><label for="study_level">Study level:</label></td>
                 <td>
                     <select id="study_level" name="study_level">
@@ -107,9 +107,9 @@
             </tr>
             <tr>
                 <td><label for="studies_title">Title:</label></td>
-                <td><input type="text" id="studies_title" name="studies_title" maxlength=40 value="Informatics"></td>
+                <td><input type="text" id="studies_title" name="studies_title" maxlength=40 placeholder="Informatics"></td>
                 <td><label for="uni_graduation">Graduation:</label></td>
-                <td><input type="text" id="uni_graduation" name="uni_graduation" maxlength=4 max=2021 required value="2009">
+                <td><input type="text" id="uni_graduation" name="uni_graduation" maxlength=4 max=2021 required placeholder="2009">
                 </td>
             </tr>
             <tr>
@@ -124,22 +124,22 @@
             </tr>
             <tr>
                 <td><label for="workplace">Work place</label></td>
-                <td><input type="text" id="workplace" name="workplace" maxlength=40 value="ABB"></td>
+                <td><input type="text" id="workplace" name="workplace" maxlength=40 placeholder="ABB"></td>
                 <td><label for="position">Position:</label></td>
-                <td><input type="text" id="position" name="position" maxlength=40 value="Testing engineer"></td>
+                <td><input type="text" id="position" name="position" maxlength=40 placeholder="Testing engineer"></td>
             </tr>
             <tr>
                 <td><label for="time_start">Started</label></td>
-                <td><input type="text" id="time_start" name="time_start" value="June 2010"></td>
+                <td><input type="text" id="time_start" name="time_start" placeholder="June 2010"></td>
                 <td><label for="time_finish">Finished</label></td>
-                <td><input type="text" id="time_finish" name="time_finish" value="Currently working"></td>
+                <td><input type="text" id="time_finish" name="time_finish" placeholder="Currently working"></td>
             </tr>
             <tr>
                 <td colspan="2"><label for="job_description">Job description:</label></td>
                 <td colspan="2"><input type="button" id="ask_feedback" value="Ask feedback from collegues"></td>
             </tr>
             <tr>
-                <td colspan="4"><textarea name="job_description" id="job_description" maxlength=40 value="Testing stuff" cols="70" rows="5"></textarea></td>
+                <td colspan="4"><textarea name="job_description" id="job_description" maxlength=40 placeholder="Testing stuff" cols="70" rows="5"></textarea></td>
             </tr>
             <tr>
                 <td colspan="4"><input type="button" id="add_work" value="Add work experience"></td>
@@ -152,14 +152,10 @@
     </form>
 </div>
 
-<!--PAGE FOOTER-->
-    <footer>
-        <span id="footertext">Endla 14 Kristiine, Tallinn, Harjumaa</span>
-        <a href="tel:372-948-9494">+ 372 948 9494</a>
-        <br>
-        <span id="footertext">Estonia Zip Code 29302 </span>
-        <a href="mailto:support@idwod.com">support@idwod.com</a>
-    </footer>
+    <!--PAGE FOOTER-->
+    <?php
+    echo $page_footer;
+    ?>
 
 </body>
 

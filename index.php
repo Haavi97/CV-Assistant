@@ -40,14 +40,10 @@
         <img src="style/cv1.png"></img>
     </div>
 
-<!--PAGE FOOTER-->
-    <footer>
-        <span id="footertext">Endla 14 Kristiine, Tallinn, Harjumaa</span>
-        <a href="tel:372-948-9494">+ 372 948 9494</a>
-        <br>
-        <span id="footertext">Estonia Zip Code 29302 </span>
-        <a href="mailto:support@idwod.com">support@idwod.com</a>
-    </footer>
+    <!--PAGE FOOTER-->
+    <?php
+    echo $page_footer;
+    ?>
 
 </body>
 </html>
