@@ -13,6 +13,28 @@ div#pagecontent {
     margin-left: 10%;
 }
 
+table {
+    margin-bottom: 100px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    line-height: 50px;
+}
+
+td {
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+table tr:not(:first-child):hover td {
+    background-color: #70d5f1;
+    border-top: royalblue 5px solid;
+    border-bottom: royalblue 5px solid;
+}
+
+table .selected {
+    background-color: red;
+}
+
 #logo {
     position: fixed;
     padding: 0px 0;
@@ -149,6 +171,7 @@ p {
 footer {
     position: fixed;
     bottom: 0;
+    left: 0;
     padding: 10px;
     width: 100%;
     background-color: #276678;

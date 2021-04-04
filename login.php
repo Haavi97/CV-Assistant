@@ -1,7 +1,6 @@
 <?php
-    include 'main.php';
+include 'main.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,21 +26,47 @@
 
 <body>
     <div id="pagecontent">
-        <p>
-            WILL TURN INTO A LOGOUT BUTTON DURING AN ACTIVE USER SESSION <br>
-        </p>
         <h1 style="margin-top:50px;">Login to your account</h1>
 
-        <form>
+        <form action="login.php" method="POST">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username"><br>
-            <label for="Password">Password:</label><br>
-            <input type="password" id="Password" name="Password">
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password">
             <br>
             <br>
-            <input type="submit" value="Log in" class="login_button">
+            <input type="submit" id="loginbutton" Value="Login" class="login_button">
         </form>
     </div>
+
+    <?php
+
+    if ($_POST) {
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+
+        if (!strlen($username) || !strlen($password)) {
+            die('Please enter a username and password');
+        }
+
+        $handle = fopen("accounts.csv", "r");
+
+        while (($data = fgetcsv($handle)) !== FALSE) {
+            if ($data[0] == $username && $data[1] == $password) {
+                $_SESSION["username"] = $username;
+                $_SESSION["password"] = $password;
+                header("Location: index.php");
+                break;
+            }
+        }
+
+        fclose($handle);
+
+
+        // header("Location: index.php");
+    }
+
+    ?>
 
     <!--PAGE FOOTER-->
     <?php

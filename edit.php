@@ -28,8 +28,6 @@
     <!--PAGE CONTENT-->
     <body>
     <div id="pagecontent">
-        <p>
-            WILL APPEAR IN AN ACTIVE USER SESSION <br> </p>
     <h1>Edit your CV</h1>
     <form action="/send.php" method="get" name="basic_data">
         <!--TODO!-->
