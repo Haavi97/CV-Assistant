@@ -29,7 +29,12 @@
     <body>
     <div id="pagecontent">
     <h1>Edit your CV</h1>
-    <form action="/send.php" method="get" name="basic_data">
+    <p>
+        <?php
+        echo $validity_str;
+        ?>
+    </p>
+    <form method="POST" id="formdata" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <!--TODO!-->
         <!--Auto fill it if the system already has the info-->
         <!--Break styling to be added to CSS for making it higher or change the padding of the input-->
@@ -38,12 +43,13 @@
                 <th colspan="4">
                     <h2>Basic info</h2>
                 </th>
+                <th><button type="submit" class="button" name="submit">Save</button></th>
             </tr>
             <tr>
                 <td><label for="fname">First name:</label></td>
                 <td><input type="text" id="fname" name="fname" maxlength=40 required placeholder="James"></td>
-                <td><label for="lname">Phone number:</label></td>
-                <td><input type="text" id="lname" name="phone" maxlength=15 pattern="+([0-9]|\s)*" required title="Phone number starting with country prefix" placeholder="+372 xxx xxxx"></td>
+                <td><label for="phone">Phone number:</label></td>
+                <td><input type="text" id="phone" name="phone" maxlength=15 pattern="+([0-9]|\s)*" required title="Phone number starting with country prefix" placeholder="+372 xxx xxxx"></td>
             </tr>
             <tr>
                 <td><label for="lname">Last name:</label></td>
@@ -56,7 +62,7 @@
                 <td><label for="nationality">Nationality:</label></td>
                 <td><input type="text" id="nationality" name="nationality" placeholder="Estonian"></td>
                 <td><label for="birth">Date of birth:</label></td>
-                <td><input type="text" id="birth" name="birth" maxlength=40 required placeholder="20/12/1992"></td>
+                <td><input type="date" id="birth" name="birth" max=<?php echo $age_18;?> required placeholder="20/12/1992"></td>
             </tr>
             <tr>
                 <td><label for="sex">Sex:</label></td>
@@ -107,7 +113,7 @@
                 <td><label for="studies_title">Title:</label></td>
                 <td><input type="text" id="studies_title" name="studies_title" maxlength=40 placeholder="Informatics"></td>
                 <td><label for="uni_graduation">Graduation:</label></td>
-                <td><input type="text" id="uni_graduation" name="uni_graduation" maxlength=4 max=2021 required placeholder="2009">
+                <td><input type="text" id="uni_graduation" name="uni_graduation" maxlength=4 max=2021 placeholder="2009">
                 </td>
             </tr>
             <tr>
@@ -144,9 +150,6 @@
             </tr>
         </table>
         <br><br>
-
-
-        <input type="submit" id="save_button" value="Save">
     </form>
 </div>
 
