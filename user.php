@@ -47,19 +47,19 @@ class Workplace{
 
     // SETTERS
     function set_name($data){
-        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+        $this->name = preg_replace("#[^(\S| )]#", null, $data);
     }
     function set_position($data){
-        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+        $this->position = preg_replace("#[^(\S| )]#", null, $data);
     }
-    function set_start($data){
-        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+    function set_time_start($data){
+        $this->time_start = preg_replace("#[^(\S| )]#", null, $data);
     }
     function set_time_finish($data){
-        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+        $this->time_finish = preg_replace("#[^(\S| )]#", null, $data);
     }
     function set_job_description($data){
-        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+        $this->job_description = preg_replace("#[^(\S| )]#", null, $data);
     }
 }
 
@@ -92,7 +92,7 @@ class User{
         $this->firstname = preg_replace("#[^(\p{L}| )]#", null, $data);
     }
     function set_lastname($data){
-        $this->lastname = preg_replace("#[^\p{L}]#", null, $data);
+        $this->lastname = preg_replace("#[^\p{L}| ]#", null, $data);
     }
     function set_nationality($data){
         $this->nationality = preg_replace("#[^\p{L}]#", null, $data);

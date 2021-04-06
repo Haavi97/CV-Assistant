@@ -3,8 +3,6 @@ include "user.php";
 
 session_start(); 
 
-$current = new User();
-
 if (isset($_SESSION['username'])) {
     $session_active = true;
 }
@@ -31,7 +29,7 @@ if ($session_active){
         $success = true;
     }
     if ($success){
-        $current = json_decode($data, false);
+        $from_file = json_decode($data, false);
     }
 } else{
     $nav_menu = $nav_menu . '
@@ -54,6 +52,7 @@ $page_footer = '
 // HANDLING EDIT CV FORM
 $validity_str = "";
 $valid = false;
+$current = new User();
 list($year_t, $month_t, $day_t) = explode("-", date('Y-m-d'));
 // str -> int today 
 $month_t = intval($month_t);
