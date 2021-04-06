@@ -20,7 +20,7 @@
         <img src="style/logo.png" style="padding:20px;"></img>
         <ul>
             <?php
-            echo $nav_menu
+            echo $nav_menu;
             ?>
         </ul>
     </nav>
@@ -47,28 +47,37 @@
             </tr>
             <tr>
                 <td><label for="fname">First name:</label></td>
-                <td><input type="text" id="fname" name="fname" maxlength=40 required placeholder="James"></td>
+                <td><input type="text" id="fname" name="fname" maxlength=40 required placeholder="James" value=<?php echo $current->get_firstname();?>></td>
                 <td><label for="phone">Phone number:</label></td>
-                <td><input type="text" id="phone" name="phone" maxlength=15 pattern="+([0-9]|\s)*" required title="Phone number starting with country prefix" placeholder="+372 xxx xxxx"></td>
+                <td><input type="text" id="phone" name="phone" maxlength=15 pattern="+([0-9]|\s)*" required title="Phone number starting with country prefix" placeholder="+372 xxx xxxx" value=<?php echo $current->get_phone();?>></td>
             </tr>
             <tr>
                 <td><label for="lname">Last name:</label></td>
-                <td><input type="text" id="lname" name="lname" maxlength=40 required placeholder="Smith"></td>
+                <td><input type="text" id="lname" name="lname" maxlength=40 required placeholder="Smith" value=<?php echo $current->get_lastname();?>></td>
                 <td><label for="email">Email:</label></td>
-                <td><input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please type a valid email. E.g.: example@examle.com" required placeholder="jsmith@taltech.ee">
+                <td><input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please type a valid email. E.g.: example@examle.com" required placeholder="jsmith@taltech.ee" value=<?php echo $current->get_email();?>>
                 </td>
             </tr>
             <tr>
                 <td><label for="nationality">Nationality:</label></td>
-                <td><input type="text" id="nationality" name="nationality" placeholder="Estonian"></td>
+                <td><input type="text" id="nationality" name="nationality" placeholder="Estonian"  value=<?php echo $current->get_nationality();?>></td>
                 <td><label for="birth">Date of birth:</label></td>
-                <td><input type="date" id="birth" name="birth" max=<?php echo $age_18;?> required placeholder="20/12/1992"></td>
+                <td><input type="date" id="birth" name="birth" max=<?php echo $age_18;?> required placeholder="20/12/1992" value=<?php echo $current->get_date();?>></td>
             </tr>
             <tr>
                 <td><label for="sex">Sex:</label></td>
-                <td><input type="radio" id="male" name="sex" value="male" checked>
+                <?php 
+                if ($current->get_sex()=="male"){
+                    $checked_male = "checked";
+                    $checked_female = "";
+                } else {
+                    $checked_male = "";
+                    $checked_female = "checked";
+                }
+                ?>
+                <td><input type="radio" id="male" name="sex" value="male"  <?php echo $checked_male;?>>
                     <label for="male">Male</label><br>
-                    <input type="radio" id="female" name="sex" value="female">
+                    <input type="radio" id="female" name="sex" value="female" <?php echo $checked_female;?>>
                     <label for="female">Female</label>
                 </td>
             </tr>
@@ -84,10 +93,10 @@
             </tr>
             <tr>
                 <td><label for="hschool">High school</label></td>
-                <td><input type="text" id="hschool" name="hschool" maxlength=40 required placeholder="International School">
+                <td><input type="text" id="hschool" name="hschool" maxlength=40 required placeholder="International School"  value=<?php echo $current->get_hschool();?>>
                 </td>
                 <td><label for="hschool_year">Graduation:</label></td>
-                <td><input type="text" id="hschool_year" name="hschool_year" maxlength=4 max=2021 required placeholder="2005">
+                <td><input type="text" id="hschool_year" name="hschool_year" maxlength=4 max=2021 required placeholder="2005" value=<?php echo $current->get_hschool_year();?>>
                 </td>
             </tr>
             <tr>

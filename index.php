@@ -18,7 +18,7 @@
     <img src="style/logo.png" style="padding:20px;"></img>
     <ul>
         <?php
-        echo $nav_menu
+        echo $nav_menu;
         ?>
     </ul>
 </nav>

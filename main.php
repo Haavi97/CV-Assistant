@@ -2,6 +2,9 @@
 include "user.php";
 
 session_start(); 
+
+$current = new User();
+
 if (isset($_SESSION['username'])) {
     $session_active = true;
 }
@@ -18,6 +21,18 @@ if ($session_active){
     <li class="menu"><a href="feedback.php">Feedback</a></li>
     <li class="menu"><a href="logout.php">Logout</a></li>
     ';
+    $dir = 'data';
+    $file = $dir . '/'. $_SESSION["username"] . '.json';
+    $data = file_get_contents($file, $data);
+    if ($data == FALSE) {
+        // Probably the file is not created yet
+        $success = false;
+    } else {
+        $success = true;
+    }
+    if ($success){
+        $current = json_decode($data, false);
+    }
 } else{
     $nav_menu = $nav_menu . '
     <li class="menu"><a href="login.php">Login</a></li>
@@ -37,7 +52,7 @@ $page_footer = '
 
 
 // HANDLING EDIT CV FORM
-$validity_str = "Nothing yet";
+$validity_str = "";
 $valid = false;
 list($year_t, $month_t, $day_t) = explode("-", date('Y-m-d'));
 // str -> int today 
@@ -46,16 +61,15 @@ $day_t = intval($day_t);
 $year_t = intval($year_t) - 18;
 $age_18 = implode("-", array($month_t, $day_t, $year_t));
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $current = new User();
     $validity_str = "Handling request";
-    $current->firstname = preg_replace("#[^(\w| )]#", null, $_POST['fname']);
-    $current->lastname = preg_replace("#[^\w]#", null, $_POST['lname']);
-    $current->nationality = preg_replace("#[^\w]#", null, $_POST['nationality']);
-    $current->sex = preg_replace("#[^\w]#", null, $_POST['sex']);
-    $current->hschool = preg_replace("#[^\w]#", null, $_POST['hschool']);
-    $current->hschool_year = intval(preg_replace("#[^\d]#", null, $_POST['hschool_year']));
-    $current->email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    $current->phone = preg_replace("#[^(\+?\d+)]#", null, $_POST['phone']);
+    $current->set_firstname(preg_replace("#[^(\p{L}| )]#", null, $_POST['fname']));
+    $current->set_lastname(preg_replace("#[^\p{L}]#", null, $_POST['lname']));
+    $current->set_nationality(preg_replace("#[^\p{L}]#", null, $_POST['nationality']));
+    $current->set_sex(preg_replace("#[^\w]#", null, $_POST['sex']));
+    $current->set_hschool(preg_replace("#[^\p{L}]#", null, $_POST['hschool']));
+    $current->set_hschool_year(intval(preg_replace("#[^\d]#", null, $_POST['hschool_year'])));
+    $current->set_email(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
+    $current->set_phone(preg_replace("#[^(\+?\d+)]#", null, $_POST['phone']));
     list($year, $month, $day) = explode("-", $_POST['birth']);
     
     // str -> int age
@@ -64,8 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $year = intval($year);
 
     if (checkdate($month, $day, $year)){
-        if (($year <= $year_t)){
-            $current->date = implode("-", array($month, $day, $year));
+        if ($year <= $year_t){
+            $current->set_date(implode("-", array($month, $day, $year)));
         } else {
             $current->date = null;
         }
@@ -73,8 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $current->date = null;
     }
     // Cheking all fields. If they are empty is because they are not valid
-    if (empty($current->firstname) or empty($current->lastname) or empty($current->email) or empty($current->phone) or empty($current->date)) {
-        $validity_str = "<span style=\"color:red\">Invalid form. Please check all the fields</span>";
+    if (empty($current->get_firstname()) or empty($current->get_lastname()) or empty($current->get_email()) or empty($current->get_phone()) or empty($current->get_date())) {
+        $validity_str = $validity_str . $current->get_lastname() . "<span style=\"color:red\">Invalid form. Please check all the fields</span>";
         $valid = false;
     } else {
         $valid = true;

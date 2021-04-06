@@ -1,14 +1,14 @@
 <?php
 class User{
-    public $firstname;
-    public $lastname;
-    public $nationality;
-    public $sex;
-    public $hschool;
-    public $hschool_year;
-    public $email;
-    public $phone;
-    public $date;
+    public $firstname = "";
+    public $lastname = "";
+    public $nationality = "";
+    public $sex = "";
+    public $hschool = "";
+    public $hschool_year = "";
+    public $email = "";
+    public $phone = "";
+    public $date = "";
 
     function set_firstname($data){
         $this->firstname = $data;
@@ -26,7 +26,7 @@ class User{
         $this->hschool = $data;
     }
     function set_hschool_year($data){
-        $this->hschool_yea = $data;
+        $this->hschool_year = $data;
     }
     function set_email($data){
         $this->email = $data;
@@ -35,34 +35,34 @@ class User{
         $this->phone = $data;
     }
     function set_date($data){
-        $this->lastname = $data;
+        $this->date = implode("/", explode("-", $data));
     }
     
-    function get_firstname($data){
+    function get_firstname(){
         return $this->firstname;
     }
-    function get_lastname($data){
+    function get_lastname(){
         return $this->lastname;
     }
-    function get_nationality($data){
+    function get_nationality(){
         return $this->nationality;
     }
-    function get_sex($data){
+    function get_sex(){
         return $this->sex;
     }
-    function get_hschool($data){
+    function get_hschool(){
         return $this->hschool;
     }
-    function get_hschool_year($data){
+    function get_hschool_year(){
         return $this->hschool_yea;
     }
-    function get_email($data){
+    function get_email(){
         return $this->email;
     }
-    function get_phone($data){
+    function get_phone(){
         return $this->phone;
     }
-    function get_date($data){
+    function get_date(){
         return $this->lastname;
     }
 }
