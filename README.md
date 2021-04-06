@@ -15,7 +15,7 @@ As it name says a Frequent Answered Questions page.
 Login page that handles the users login and redirects to the main page with a different navigation menu. Logout is handled with script [```logout.php```](logout.php)
 
 ### Edit CV [(```edit.php```)](https://enos.itcollege.ee/~issoys/cv-assistant/edit.php)
-A page to edit the active user CV. The form is handle in the script [```main.php```](```main.php```).
+A page to edit the active user CV. The form is handle in the script [```main.php```](```main.php```). The addition buttons will be handled later with JS.
 
 ### Feedback [(```feedback.php```)](feedback.php)
 A page where the user can give feedback to work collegues as well as request feedback from collegues for him/herself.

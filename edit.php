@@ -42,7 +42,7 @@
                 <th colspan="4">
                     <h2>Basic info</h2>
                 </th>
-                <th><button type="submit" class="button" name="submit">Save</button></th>
+                <th><button type="submit" class="button" name="submit" style="font-size: 1.2rem;">Save</button></th>
             </tr>
             <tr>
                 <td><label for="fname">First name:</label></td>
