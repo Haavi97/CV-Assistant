@@ -36,7 +36,6 @@
     </p>
     <form method="POST" id="formdata" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <!--TODO!-->
-        <!--Auto fill it if the system already has the info-->
         <!--Break styling to be added to CSS for making it higher or change the padding of the input-->
         <table id="basic_info_table">
             <tr>
@@ -149,7 +148,7 @@
             </tr>
             <tr>
                 <td colspan="2"><label for="job_description">Job description:</label></td>
-                <td colspan="2"><input type="button" id="ask_feedback" value="Ask feedback from collegues"></td>
+                <td colspan="2"><input type="button" id="ask_feedback" value="Ask feedback from collegues" onclick="window.location='feedback.php';"></td>
             </tr>
             <tr>
                 <td colspan="4"><textarea name="job_description" id="job_description" maxlength=40 placeholder="Testing stuff" cols="70" rows="5"></textarea></td>
@@ -158,7 +157,7 @@
                 <td colspan="4"><input type="button" id="add_work" value="Add work experience"></td>
             </tr>
         </table>
-        <br><br>
+        <br><br><br><br>
     </form>
 </div>
 

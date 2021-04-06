@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // Cheking all fields. If they are empty is because they are not valid
     if (empty($current->get_firstname()) or empty($current->get_lastname()) or empty($current->get_email()) or empty($current->get_phone()) or empty($current->get_date())) {
-        $validity_str = $validity_str . $current->get_lastname() . "<span style=\"color:red\">Invalid form. Please check all the fields</span>";
+        $validity_str = "<span style=\"color:red\">Invalid form. Please check all the fields</span>";
         $valid = false;
     } else {
         $valid = true;
