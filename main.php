@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (checkdate($month, $day, $year)){
         if ($year <= $year_t){
-            $current->set_date(implode("-", array($month, $day, $year)));
+            $current->set_date(implode("-", array($year, $month, $day)));
         } else {
             $current->date = null;
         }

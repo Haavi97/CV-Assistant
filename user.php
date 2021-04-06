@@ -35,7 +35,7 @@ class User{
         $this->phone = $data;
     }
     function set_date($data){
-        $this->date = implode("/", explode("-", $data));
+        $this->date = $data;
     }
     
     function get_firstname(){
@@ -54,7 +54,7 @@ class User{
         return $this->hschool;
     }
     function get_hschool_year(){
-        return $this->hschool_yea;
+        return $this->hschool_year;
     }
     function get_email(){
         return $this->email;
@@ -63,7 +63,7 @@ class User{
         return $this->phone;
     }
     function get_date(){
-        return $this->lastname;
+        return $this->date;
     }
 }
 

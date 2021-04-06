@@ -62,7 +62,7 @@
                 <td><label for="nationality">Nationality:</label></td>
                 <td><input type="text" id="nationality" name="nationality" placeholder="Estonian"  value=<?php echo $current->get_nationality();?>></td>
                 <td><label for="birth">Date of birth:</label></td>
-                <td><input type="date" id="birth" name="birth" max=<?php echo $age_18;?> required placeholder="20/12/1992" value=<?php echo $current->get_date();?>></td>
+                <td><input type="date" id="birth" name="birth" max=<?php echo $age_18;?> required placeholder="1992-12-22" value=<?php echo $current->get_date();?>></td>
             </tr>
             <tr>
                 <td><label for="sex">Sex:</label></td>
