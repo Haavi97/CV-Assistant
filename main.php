@@ -109,7 +109,7 @@ if ($valid) {
         if (!file_exists($dir)) {
             mkdir($dir, 0777);
         }
-        $data = json_encode($current);
+        $data = json_encode($current, JSON_INVALID_UTF8_IGNORE);
         $success = false;
         if (file_exists($file)) {
             $handler = fopen($file, 'w+');
