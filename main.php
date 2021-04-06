@@ -91,6 +91,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ($current->university)->set_studies_title($_POST['studies_title']);
         ($current->university)->set_uni_graduation($_POST['uni_graduation']);
     }
+    if (isset($_POST['workplace']) && $_POST['workplace'] !== ""){
+        ($current->workplace)->set_name($_POST['workplace']);
+        ($current->workplace)->set_position($_POST['position']);
+        ($current->workplace)->set_time_start($_POST['time_start']);
+        ($current->workplace)->set_time_finish($_POST['time_finish']);
+        ($current->workplace)->set_job_description($_POST['job_description']);
+    }
 
     // Cheking all required fields. If they are empty is because they are not valid
     if (empty($current->get_firstname()) or empty($current->get_lastname()) or empty($current->get_email()) or empty($current->get_phone()) or empty($current->get_date())) {

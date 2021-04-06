@@ -49,6 +49,18 @@ class Workplace{
     function set_name($data){
         $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
     }
+    function set_position($data){
+        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+    }
+    function set_start($data){
+        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+    }
+    function set_time_finish($data){
+        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+    }
+    function set_job_description($data){
+        $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
+    }
 }
 
 class User{
@@ -63,6 +75,7 @@ class User{
     public $date = "";
 
     // Optional parameters:
+    // University
     public University $university;
 
     // Workplace:

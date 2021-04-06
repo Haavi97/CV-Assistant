@@ -136,22 +136,22 @@
             </tr>
             <tr>
                 <td><label for="workplace">Work place</label></td>
-                <td><input type="text" id="workplace" name="workplace" maxlength=40 placeholder="ABB"></td>
+                <td><input type="text" id="workplace" name="workplace" maxlength=40 placeholder="ABB" value=<?php echo ($current->workplace)->name;?>></td>
                 <td><label for="position">Position:</label></td>
-                <td><input type="text" id="position" name="position" maxlength=40 placeholder="Testing engineer"></td>
+                <td><input type="text" id="position" name="position" maxlength=40 placeholder="Testing engineer" value=<?php echo ($current->workplace)->position;?>></td>
             </tr>
             <tr>
                 <td><label for="time_start">Started</label></td>
-                <td><input type="text" id="time_start" name="time_start" placeholder="June 2010"></td>
+                <td><input type="text" id="time_start" name="time_start" placeholder="June 2010" value=<?php echo ($current->workplace)->time_start;?>></td>
                 <td><label for="time_finish">Finished</label></td>
-                <td><input type="text" id="time_finish" name="time_finish" placeholder="Currently working"></td>
+                <td><input type="text" id="time_finish" name="time_finish" placeholder="Currently working" value=<?php echo ($current->workplace)->time_finish;?>></td>
             </tr>
             <tr>
                 <td colspan="2"><label for="job_description">Job description:</label></td>
                 <td colspan="2"><input type="button" id="ask_feedback" value="Ask feedback from collegues" onclick="window.location='feedback.php';"></td>
             </tr>
             <tr>
-                <td colspan="4"><textarea name="job_description" id="job_description" maxlength=40 placeholder="Testing stuff" cols="70" rows="5"></textarea></td>
+                <td colspan="4"><textarea name="job_description" id="job_description" maxlength=40 placeholder="Testing stuff" cols="70" rows="5" value=<?php echo ($current->workplace)->job_description;?>></textarea></td>
             </tr>
             <tr>
                 <td colspan="4"><input type="button" id="add_work" value="Add work experience"></td>
