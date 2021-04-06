@@ -25,16 +25,6 @@ td {
     padding-right: 10px;
 }
 
-table tr:not(:first-child):hover td {
-    background-color: #70d5f1;
-    border-top: royalblue 5px solid;
-    border-bottom: royalblue 5px solid;
-}
-
-table .selected {
-    background-color: red;
-}
-
 #logo {
     position: fixed;
     padding: 0px 0;
@@ -101,6 +91,10 @@ nav ul li.menu a:hover {
 
 li.link a {
     text-decoration: none;
+}
+
+li.link {
+    padding-right: 40%;
 }
 
 div#about {
