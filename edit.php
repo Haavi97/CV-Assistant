@@ -106,10 +106,10 @@
             </tr>
             <tr>
                 <td><label for="university">University:</label></td>
-                <td><input type="text" id="university" name="university" maxlength=40 placeholder="TalTech"></td>
+                <td><input type="text" id="university" name="university" maxlength=40 placeholder="TalTech" value=<?php echo ($current->university)->get_name();?>></td>
                 <td><label for="study_level">Study level:</label></td>
                 <td>
-                    <select id="study_level" name="study_level">
+                    <select id="study_level" name="study_level" value=<?php echo ($current->university)->get_study_level();?>>
                         <option value="bachelor">Bachelor</option>
                         <option value="master">Master</option>
                         <option value="doctorate">Doctorate</option>
@@ -119,9 +119,9 @@
             </tr>
             <tr>
                 <td><label for="studies_title">Title:</label></td>
-                <td><input type="text" id="studies_title" name="studies_title" maxlength=40 placeholder="Informatics"></td>
+                <td><input type="text" id="studies_title" name="studies_title" maxlength=40 placeholder="Informatics" value=<?php echo ($current->university)->get_studies_title();?>></td>
                 <td><label for="uni_graduation">Graduation:</label></td>
-                <td><input type="text" id="uni_graduation" name="uni_graduation" maxlength=4 max=2021 placeholder="2009">
+                <td><input type="text" id="uni_graduation" name="uni_graduation" maxlength=4 max=2021 placeholder="2009" value=<?php echo ($current->university)->get_uni_graduation();?>>
                 </td>
             </tr>
             <tr>

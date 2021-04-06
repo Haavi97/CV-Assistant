@@ -18,7 +18,7 @@ include 'main.php';
 <nav>
     <img src="style/logo.png" style="padding:20px;"></img>
     <ul>
-    <?php
+        <?php
         echo $nav_menu;
         ?>
     </ul>

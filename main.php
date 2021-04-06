@@ -62,16 +62,15 @@ $year_t = intval($year_t) - 18;
 $age_18 = implode("-", array($month_t, $day_t, $year_t));
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validity_str = "Handling request";
-    $current->set_firstname(preg_replace("#[^(\p{L}| )]#", null, $_POST['fname']));
-    $current->set_lastname(preg_replace("#[^\p{L}]#", null, $_POST['lname']));
-    $current->set_nationality(preg_replace("#[^\p{L}]#", null, $_POST['nationality']));
-    $current->set_sex(preg_replace("#[^\w]#", null, $_POST['sex']));
-    $current->set_hschool(preg_replace("#[^\p{L}]#", null, $_POST['hschool']));
-    $current->set_hschool_year(intval(preg_replace("#[^\d]#", null, $_POST['hschool_year'])));
-    $current->set_email(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-    $current->set_phone(preg_replace("#[^(\+?\d+)]#", null, $_POST['phone']));
+    $current->set_firstname($_POST['fname']);
+    $current->set_lastname($_POST['lname']);
+    $current->set_nationality($_POST['nationality']);
+    $current->set_sex($_POST['sex']);
+    $current->set_hschool($_POST['hschool']);
+    $current->set_hschool_year($_POST['hschool_year']);
+    $current->set_email($_POST['email']);
+    $current->set_phone($_POST['phone']);
     list($year, $month, $day) = explode("-", $_POST['birth']);
-    
     // str -> int age
     $month = intval($month);
     $day = intval($day);
@@ -86,7 +85,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }else {
         $current->date = null;
     }
-    // Cheking all fields. If they are empty is because they are not valid
+    if (isset($_POST['university']) && $_POST['university'] !== ""){
+        ($current->university)->set_name($_POST['university']);
+        ($current->university)->set_study_level($_POST['study_level']);
+        ($current->university)->set_studies_title($_POST['studies_title']);
+        ($current->university)->set_uni_graduation($_POST['uni_graduation']);
+    }
+
+    // Cheking all required fields. If they are empty is because they are not valid
     if (empty($current->get_firstname()) or empty($current->get_lastname()) or empty($current->get_email()) or empty($current->get_phone()) or empty($current->get_date())) {
         $validity_str = "<span style=\"color:red\">Invalid form. Please check all the fields</span>";
         $valid = false;
