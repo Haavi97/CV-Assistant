@@ -12,19 +12,19 @@ include 'main.php';
     <link rel="icon" href="style/icon.png">
 </head>
 
-<!--NAVIGATION BAR-->
-<nav>
-    <img src="style/logo.png" style="padding:20px;"></img>
-    <ul>
-        <?php
-        echo $nav_menu;
-        ?>
-    </ul>
-</nav>
-
 <!--PAGE CONTENT-->
 
 <body>
+    <!--NAVIGATION BAR-->
+    <nav>
+        <img src="style/logo.png" style="padding:20px;" alt="Logo">
+        <ul>
+            <?php
+            echo $nav_menu;
+            ?>
+        </ul>
+    </nav>
+    
     <div id="pagecontent">
         <h1 style="position: relative;"> Frequently Asked Questions</h1>
         <div style="position:relative;">

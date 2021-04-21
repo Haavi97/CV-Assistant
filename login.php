@@ -12,19 +12,19 @@ include 'main.php';
     <title>Login</title>
 </head>
 
-<!--NAVIGATION BAR-->
-<nav>
-    <img src="style/logo.png" style="padding:20px;"></img>
-    <ul>
-        <?php
-        echo $nav_menu;
-        ?>
-    </ul>
-</nav>
-
 <!--PAGE CONTENT-->
 
 <body>
+    <!--NAVIGATION BAR-->
+    <nav>
+        <img src="style/logo.png" style="padding:20px;" alt="Logo">
+        <ul>
+            <?php
+            echo $nav_menu;
+            ?>
+        </ul>
+    </nav>
+    
     <div id="pagecontent">
         <h1 style="margin-top:50px;">Login to your account</h1>
 
@@ -37,6 +37,12 @@ include 'main.php';
             <br>
             <input type="submit" id="loginbutton" Value="Login" class="login_button">
         </form>
+        <div>
+            <h2>Not registered yet?</h2>
+            <form action="create.php">
+                <input type="submit" class="button" value="Go to registration form" />
+            </form>
+        </div>
     </div>
 
     <?php

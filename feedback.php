@@ -14,22 +14,26 @@ include 'main.php';
     <link rel="icon" href="style/icon.png">
 </head>
 
-<!--NAVIGATION BAR-->
-<nav>
-    <img src="style/logo.png" style="padding:20px;"></img>
-    <ul>
-        <?php
-        echo $nav_menu;
-        ?>
-    </ul>
-</nav>
-
 <!--PAGE CONTENT-->
 
 
 <body>
+    <!--NAVIGATION BAR-->
+    <nav>
+        <img src="style/logo.png" style="padding:20px;" alt="Logo">
+        <ul>
+            <?php
+            echo $nav_menu;
+            ?>
+        </ul>
+    </nav>
+    
     <div id="pagecontent">
         <h1>Feedback</h1>
+        <p>
+            In this page you can write an endorsment for any of your collegues as well as 
+            see the ones you have been already given.
+        </p>
         <?php include "recommend.php"; ?>
     </div>
 

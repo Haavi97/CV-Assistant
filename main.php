@@ -34,20 +34,18 @@ if ($session_active){
 } else{
     $nav_menu = $nav_menu . '
     <li class="menu"><a href="login.php">Login</a></li>
+    <li class="menu"><a href="create.php">Create account</a></li>
     ';
 }
 $page_footer = '
 <footer>
-    <span id="footertext">Endla 14 Kristiine, Tallinn, Harjumaa</span>
+    <span class="footertext">Endla 14 Kristiine, Tallinn, Harjumaa</span>
     <a href="tel:372-948-9494">+ 372 948 9494</a>
     <br>
-    <span id="footertext">Estonia Zip Code 29302 </span>
+    <span class="footertext">Estonia Zip Code 29302 </span>
     <a href="mailto:support@idwod.com">support@idwod.com</a>
 </footer>
 ';
-
-
-
 
 // HANDLING EDIT CV FORM
 $validity_str = "";
@@ -59,6 +57,7 @@ $month_t = intval($month_t);
 $day_t = intval($day_t);
 $year_t = intval($year_t) - 18;
 $age_18 = implode("-", array($month_t, $day_t, $year_t));
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validity_str = "Handling request";
     $current->set_firstname($_POST['fname']);
