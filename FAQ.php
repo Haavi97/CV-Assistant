@@ -10,6 +10,12 @@ include 'main.php';
     <title>FAQ</title>
     <link rel="stylesheet" href="style/main.css">
     <link rel="icon" href="style/icon.png">
+    <script src="functions.js"></script>
+    <style>
+        .faq:hover {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <!--PAGE CONTENT-->
@@ -30,8 +36,8 @@ include 'main.php';
         <div style="position:relative;">
             <ul>
                 <li class="link">
-                    <h2><a href="">Creating and Deleting Account</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    <h2 class="faq" onclick="toggleQContent(this)">▼ Creating and Deleting Account</h2>
+                    <p hidden>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                     Donec libero lorem, laoreet vel malesuada eleifend, convallis quis eros. 
                     Nullam porttitor velit vel erat tincidunt, quis pharetra nisi hendrerit. 
                     Aenean at ullamcorper metus. Vestibulum at leo a odio pharetra mollis. 
@@ -39,8 +45,8 @@ include 'main.php';
                     Sed rutrum orci eget faucibus lacinia.</p>
                 </li>
                 <li class="link">
-                    <h2><a href="">Payment</a></h2>
-                    <p>Nam vehicula malesuada quam, in auctor nibh suscipit viverra. 
+                    <h2 class="faq" onclick="toggleQContent(this)">▼ Payment</h2>
+                    <p hidden>Nam vehicula malesuada quam, in auctor nibh suscipit viverra. 
                     Fusce velit velit, fringilla eu justo eget, vestibulum tempor orci. 
                     Donec sed magna ut eros ornare viverra. Donec a malesuada nibh, eget interdum massa. 
                     Phasellus semper lacus et semper sodales. 
@@ -50,8 +56,8 @@ include 'main.php';
                     sit amet tempor nunc porta id.</p>
                 </li>
                 <li class="link">
-                    <h2><a href="">Creating and Editing CV </a></h2>
-                    <p>
+                    <h2 class="faq" onclick="toggleQContent(this)">▼ Creating and Editing CV</h2>
+                    <p hidden>
                     Nullam a sagittis neque, nec viverra dolor. 
                     Phasellus gravida urna ut purus finibus aliquet. 
                     Nullam pellentesque turpis sit amet dui pulvinar mollis. 
@@ -62,8 +68,8 @@ include 'main.php';
                     </p>
                 </li>
                 <li class="link">
-                    <h2><a href="">Endosersement & Recommendation System</a></h2>
-                    <p>
+                    <h2 class="faq" onclick="toggleQContent(this)">▼ Endosersement & Recommendation System</h2>
+                    <p hidden>
                     Integer porta, mi egestas pharetra ornare, mauris lorem bibendum ipsum, 
                     quis tincidunt quam elit vitae est. Class aptent taciti sociosqu ad litora 
                     torquent per conubia nostra, per inceptos himenaeos. Curabitur mollis tortor 
@@ -75,8 +81,8 @@ include 'main.php';
                     </p>
                 </li>
                 <li class="link">
-                    <h2><a href="">Privacy Policy</a></h2>
-                    <p>
+                    <h2 class="faq" onclick="toggleQContent(this)">▼ Privacy Policy</h2>
+                    <p hidden>
                     Cras rhoncus diam ut semper consequat. Praesent viverra convallis diam eget lacinia. 
                     Integer vitae imperdiet ligula. Sed laoreet consectetur lectus ut tincidunt. 
                     Ut vehicula sodales ligula eu hendrerit. Phasellus volutpat, diam ac rutrum accumsan, 

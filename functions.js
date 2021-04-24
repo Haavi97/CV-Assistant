@@ -68,3 +68,15 @@ function readmore() {
         moreText.style.display = "inline";
     }
 }
+
+function toggleQContent(element){
+    var ns = element.nextElementSibling;
+    console.log(ns);
+    var prior_status = ns.hidden;
+    console.log(prior_status);
+    ns.hidden = !prior_status;
+    if (!prior_status){
+        element.innerHTML = '▼' + element.innerHTML.substring(1);
+    } else {
+        element.innerHTML = '▲' + element.innerHTML.substring(1);}
+}
