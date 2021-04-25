@@ -1,6 +1,6 @@
 <?php
 include_once "user.php";
-include "dbconnection.php";
+include_once "dbconnection.php";
 // HANDLING CREATE ACCOUNT FORM
 
 // Create table if it does not exists
@@ -17,10 +17,9 @@ if (!$result) die("Could not create datatable");
 
 // 1. Check correct form
 $new_status = '';
-$valid_new = false;
+$valid = false;
 $current = new NewUser();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $validity_str = "Handling request";
     $current->set_username($link, $_POST['reg_name']);
     $current->set_pswd($link, $_POST['psw']);
     $current->set_pswd_repeat($link, $_POST['psw-repeat']);
@@ -28,8 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Cheking all required fields. If they are empty is because they are not valid
     if (empty($current->get_username()) or empty($current->get_pswd()) or empty($current->get_pswd_repeat())) {
-        $new_status = "<span style=\"color:red\">Invalid form. Please check all the fields" . "<br>" . 
-                        $current->get_username() . "<br>" . $current->get_pswd() . "<br>" .  "</span>";
+        $new_status = "<span style=\"color:red\">Invalid form. Please check all the fields</span>";
         $valid = false;
     } else {
         if ($current->get_pswd() !== $current->get_pswd_repeat()) {
@@ -38,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else $valid = true;
     }
     // 2. Check the username doesn´t exists
-    // TODO!!!!!!
+    // Fails later on if it already exists since username is set to be unique in the definition of the datatable
 }
 
 // 3. Add to database
@@ -52,6 +50,8 @@ if ($valid) {
     if ($result){
         $new_status = "<span style=\"color:green\">Succesfully created account</span>" . 
                         "<script>newAccountSuccess()</script>";
+    } else {
+        $new_status = "<span style=\"color:red\">Invalid username or password. </span>";
     }
 }
 

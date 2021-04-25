@@ -46,4 +46,11 @@ $page_footer = '
     <a href="mailto:support@idwod.com">support@idwod.com</a>
 </footer>
 ';
+
+function login($username, $password){
+    // This script assumes already validated data
+    $_SESSION["username"] = $username;
+    $_SESSION["password"] = $password;
+    header("Location: index.php");
+}
 ?>

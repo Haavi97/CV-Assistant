@@ -1,5 +1,6 @@
 <?php
-include 'main.php';
+include_once 'main.php';
+include_once 'handlelogin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,8 +28,13 @@ include 'main.php';
     
     <div id="pagecontent">
         <h1 style="margin-top:50px;">Login to your account</h1>
+        <p>
+            <?php
+                echo $status;
+            ?>
+        </p>
 
-        <form action="login.php" method="POST">
+        <form method="POST" id="formdata" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username"><br>
             <label for="password">Password:</label><br>
@@ -44,35 +50,6 @@ include 'main.php';
             </form>
         </div>
     </div>
-
-    <?php
-
-    if ($_POST) {
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
-
-        if (!strlen($username) || !strlen($password)) {
-            die('Please enter a username and password');
-        }
-
-        $handle = fopen("accounts.csv", "r");
-
-        while (($data = fgetcsv($handle)) !== FALSE) {
-            if ($data[0] == $username && $data[1] == $password) {
-                $_SESSION["username"] = $username;
-                $_SESSION["password"] = $password;
-                header("Location: index.php");
-                break;
-            }
-        }
-
-        fclose($handle);
-
-
-        // header("Location: index.php");
-    }
-
-    ?>
 
     <!--PAGE FOOTER-->
     <?php
