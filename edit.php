@@ -101,7 +101,7 @@
                 </td>
             </tr>
             <tr>
-                <td><input type="button" id="add_school" value="Add a school"></td>
+                <td><input type="button" id="add_school" value="Add a school" onclick="addSchool(this)"></td>
             </tr>
             <tr>
                 <th>University studies</th>
@@ -127,7 +127,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><input type="button" id="add_uni" value="Add university studies"></td>
+                <td colspan="2"><input type="button" id="add_uni" value="Add university studies" onclick="addUniversity(this)"></td>
             </tr>
         </table>
         <table id="work_experience">
@@ -153,10 +153,10 @@
                 <td colspan="2"><input type="button" id="ask_feedback" value="Ask feedback from collegues" onclick="window.location='feedback.php';"></td>
             </tr>
             <tr>
-                <td colspan="4"><textarea name="job_description" id="job_description" maxlength=40 placeholder="Testing stuff" cols="70" rows="5"><?php echo ($from_file->workplace)->job_description;?></textarea></td>
+                <td colspan="4"><textarea name="job_description" id="job_description" maxlength=200 placeholder="Testing stuff" cols="70" rows="5"><?php echo ($from_file->workplace)->job_description;?></textarea></td>
             </tr>
             <tr>
-                <td colspan="4"><input type="button" id="add_work" value="Add work experience"></td>
+                <td colspan="4"><input type="button" id="add_work" value="Add work experience" onclick="addWorkplace(this)"></td>
             </tr>
         </table>
         <br><br><br><br>

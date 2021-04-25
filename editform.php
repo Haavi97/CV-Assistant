@@ -1,4 +1,6 @@
 <?php
+include_once 'createedtitable.php';
+
 // HANDLING EDIT CV FORM
 $validity_str = "";
 $valid = false;

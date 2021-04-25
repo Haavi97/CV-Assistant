@@ -1,7 +1,7 @@
 <?php
-include_once "user.php";
+include_once 'user.php';
 include_once 'main.php';
-include_once "dbconnection.php";
+include_once 'dbconnection.php';
 
 // 1. Check correct form
 $status = '';
