@@ -162,9 +162,9 @@ function addUniversity(element){
     var label_td_university = document.createElement('td');
     var label_university = document.createElement('label');
     var input_td_university = document.createElement('td');
-    var input_university = document.createElement('input');study_level
+    var input_university = document.createElement('input');
 
-    var itm = document.getElementById('study_level')
+    var itm = document.getElementById('study_level');
     var label_td_study_level = document.createElement('td');
     var label_study_level = document.createElement('label');
     var select_td_study_level = document.createElement('td');
@@ -256,45 +256,153 @@ function addUniversity(element){
 
 }
 
-{/* <tr>
-    <td><label for="university">University:</label></td>
-    <td><input type="text" id="university" name="university" maxlength=40 placeholder="TalTech" value=<?php echo ($from_file->university)->name;?>></td>
-    <td><label for="study_level">Study level:</label></td>
-    <td>
-        <select id="study_level" name="study_level" value=<?php echo ($from_file->university)->study_level;?>>
-            <option value="bachelor">Bachelor</option>
-            <option value="master">Master</option>
-            <option value="doctorate">Doctorate</option>
-            <option value="post-doctorate">Post-doctorate</option>
-        </select>
-    </td>
-</tr>
-<tr>
-    <td><label for="studies_title">Title:</label></td>
-    <td><input type="text" id="studies_title" name="studies_title" maxlength=40 placeholder="Informatics" value=<?php echo ($from_file->university)->studies_title;?>></td>
-    <td><label for="uni_graduation">Graduation:</label></td>
-    <td><input type="text" id="uni_graduation" name="uni_graduation" maxlength=4 max=2021 placeholder="2009" value=<?php echo ($from_file->university)->uni_graduation;?>>
-    </td>
-</tr> */}
+function addWorkplace(element){
+    var workplaces = sessionStorage.getItem('workplaces');
+    if (workplaces == null){
+        workplaces = 2;
+        sessionStorage.setItem('workplaces', workplaces);
+    } else {
+        workplaces = parseInt(workplaces) + 1;
+        sessionStorage.setItem('workplaces', workplaces);
+    }
+    
+    var row0 = document.createElement('tr');
+    var row1 = document.createElement('tr');
+    var row2 = document.createElement('tr');
+    var row3 = document.createElement('tr');
+    var row4 = document.createElement('tr');
 
-function addWorkplace(element){}
+    var title = document.createElement('h3');
 
-{/* <tr>
-    <td><label for="workplace">Work place</label></td>
-    <td><input type="text" id="workplace" name="workplace" maxlength=40 placeholder="ABB" value=<?php echo ($from_file->workplace)->name;?>></td>
-    <td><label for="position">Position:</label></td>
-    <td><input type="text" id="position" name="position" maxlength=40 placeholder="Testing engineer" value=<?php echo ($from_file->workplace)->position;?>></td>
-</tr>
-<tr>
-    <td><label for="time_start">Started</label></td>
-    <td><input type="text" id="time_start" name="time_start" placeholder="June 2010" value=<?php echo ($from_file->workplace)->time_start;?>></td>
-    <td><label for="time_finish">Finished</label></td>
-    <td><input type="text" id="time_finish" name="time_finish" placeholder="Currently working" value=<?php echo ($from_file->workplace)->time_finish;?>></td>
-</tr>
-<tr>
-    <td colspan="2"><label for="job_description">Job description:</label></td>
-    <td colspan="2"><input type="button" id="ask_feedback" value="Ask feedback from collegues" onclick="window.location='feedback.php';"></td>
-</tr>
-<tr>
-    <td colspan="4"><textarea name="job_description" id="job_description" maxlength=200 placeholder="Testing stuff" cols="70" rows="5"><?php echo ($from_file->workplace)->job_description;?></textarea></td>
-</tr> */}
+    var label_td_workplace = document.createElement('td');
+    var label_workplace = document.createElement('label');
+    var input_td_workplace = document.createElement('td');
+    var input_workplace = document.createElement('input');
+
+    var label_td_position = document.createElement('td');
+    var label_position = document.createElement('label');
+    var input_td_position = document.createElement('td');
+    var input_position = document.createElement('input');
+    
+    var label_td_workplace_year_start = document.createElement('td');
+    var label_workplace_year_start = document.createElement('label');
+    var input_td_workplace_year_start = document.createElement('td');
+    var input_workplace_year_start = document.createElement('input');
+    
+    var label_td_workplace_year_finish = document.createElement('td');
+    var label_workplace_year_finish = document.createElement('label');
+    var input_td_workplace_year_finish = document.createElement('td');
+    var input_workplace_year_finish = document.createElement('input');
+
+    var itm = document.getElementById('ask_feedback');
+    var label_td_jod_description = document.createElement('td');
+    var label_jod_description = document.createElement('label');
+    var td_feedback_button = document.createElement('td');
+    var button_feedback = itm.cloneNode(true);
+
+    var itm2 = document.getElementById('job_description');
+    var input_td_jod_description = document.createElement('td');
+    var input_jod_description = itm2.cloneNode(true);
+
+    workplace =  'workplace' + workplaces.toString();
+    workplace_inner = 'Workplace ' + workplaces.toString();
+    
+    title.innerHTML = workplace_inner;
+
+    label_workplace.innerHTML = workplace_inner;
+    label_workplace.for = workplace;
+    input_workplace.type = 'text';
+    input_workplace.maxlength = 40
+    input_workplace.id = workplace;
+    input_workplace.name = workplace;
+    input_workplace.placeholder = workplace_inner;
+
+    position = 'position' + workplaces.toString();
+    position_inner = 'Study level:';
+
+    label_position.for = position;
+    label_position.innerHTML = position_inner;
+    input_position.id = position;
+    
+    workplace_year_start =  'time_start' + workplaces.toString();
+    workplace_year_inner_start = 'Started:';
+    
+    label_workplace_year_start.innerHTML = workplace_year_inner_start;
+    label_workplace_year_start.for = workplace_year_start;
+    input_workplace_year_start.type = 'text';
+    input_workplace_year_start.maxlength = 4;
+    input_workplace_year_start.id = workplace_year_start;
+    input_workplace_year_start.name = workplace_year_start;
+    input_workplace_year_start.placeholder = workplace_year_inner_start;
+    
+    workplace_year_finish =  'time_finish' + workplaces.toString();
+    workplace_year_inner_finish = 'Finished:';
+    
+    label_workplace_year_finish.innerHTML = workplace_year_inner_finish;
+    label_workplace_year_finish.for = workplace_year_finish;
+    input_workplace_year_finish.type = 'text';
+    input_workplace_year_finish.maxlength = 4;
+    input_workplace_year_finish.id = workplace_year_finish;
+    input_workplace_year_finish.name = workplace_year_finish;
+    input_workplace_year_finish.placeholder = workplace_year_inner_finish;
+
+    
+    jod_description =  'jod_description' + workplaces.toString();
+    jod_description_inner = 'Job description:';
+
+    label_td_jod_description.colSpan = 2;
+    td_feedback_button.colSpan = 2;
+
+    label_jod_description.innerHTML = jod_description_inner;
+    label_jod_description.for = jod_description;
+
+    input_td_jod_description.colSpan = 4;
+
+    input_jod_description.id = jod_description;
+    input_jod_description.name = jod_description;
+    input_jod_description.placeholder = jod_description_inner;
+
+    label_td_workplace.appendChild(label_workplace);
+    input_td_workplace.appendChild(input_workplace);
+
+    label_td_position.appendChild(label_position);
+    input_td_position.appendChild(input_position);
+
+    label_td_workplace_year_start.appendChild(label_workplace_year_start);
+    input_td_workplace_year_start.appendChild(input_workplace_year_start);
+    
+    label_td_workplace_year_finish.appendChild(label_workplace_year_finish);
+    input_td_workplace_year_finish.appendChild(input_workplace_year_finish);
+    
+    label_td_jod_description.appendChild(label_jod_description);
+    td_feedback_button.appendChild(button_feedback);
+    input_td_jod_description.appendChild(input_jod_description);
+
+
+    row0.appendChild(title);
+
+    row1.appendChild(label_td_workplace);
+    row1.appendChild(input_td_workplace);
+
+    row1.appendChild(label_td_position);
+    row1.appendChild(input_td_position);
+
+    row2.appendChild(label_td_workplace_year_start);
+    row2.appendChild(input_td_workplace_year_start);
+
+    row2.appendChild(label_td_workplace_year_finish);
+    row2.appendChild(input_td_workplace_year_finish);
+
+    row3.appendChild(label_td_jod_description);
+    row3.appendChild(td_feedback_button);
+
+    row4.appendChild(input_td_jod_description);
+
+    element.parentNode.parentNode.before(row0);
+    element.parentNode.parentNode.before(row1);
+    element.parentNode.parentNode.before(row2);
+    element.parentNode.parentNode.before(row3);
+    element.parentNode.parentNode.before(row4);
+
+    if (workplaces >= 20) element.setAttribute("hidden", true);
+}
