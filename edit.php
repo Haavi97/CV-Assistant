@@ -1,5 +1,7 @@
 <?php
     include 'main.php';
+    include 'onlylogged.php';
+    include 'editform.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +14,7 @@
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/edit.css">
     <link rel="icon" href="style/icon.png">
+    <script src="functions.js"></script>
 </head>
 
 <!--PAGE CONTENT-->

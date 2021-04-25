@@ -1,5 +1,6 @@
 <?php
 include 'main.php'; 
+include 'onlylogged.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

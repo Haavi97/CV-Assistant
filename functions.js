@@ -80,3 +80,8 @@ function toggleQContent(element){
     } else {
         element.innerHTML = '▲' + element.innerHTML.substring(1);}
 }
+
+function newAccountSuccess(){
+    window.alert('Account succesfully created');
+    window.open('index.php', _self);
+}

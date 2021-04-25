@@ -1,4 +1,17 @@
 <?php
+
+function sanitize($var){
+    $var = stripslashes($var);
+    $var = htmlentities($var);
+    $var = strip_tags($var);
+    return $var;
+}
+
+function sanitize_input_sql($link, $var){
+    $var = mysqli_real_escape_string($link, $var);
+    return $var;
+}
+
 class University{
     // University
     public $name;
@@ -8,18 +21,22 @@ class University{
 
     // SETTERS
     function set_name($data){
+        $data = sanitize($data);
         $this->name = preg_replace("#[^(\p{L}| )]#", null, $data);
     }
     function set_study_level($data){
+        $data = sanitize($data);
         $this->study_level = preg_replace("#[^\p{L}]#", null, $data);
         if (!($this->study_level === "bachelor" | $this->study_level === "master" | $this->study_level === "doctorate" | $this->study_level === "post-doctorate")){
             $this->study_level = null;
         }
     }
     function set_studies_title($data){
+        $data = sanitize($data);
         $this->studies_title = preg_replace("#[^\p{L}]#", null, $data);
     }
     function set_uni_graduation($data){
+        $data = sanitize($data);
         $this->uni_graduation = intval(preg_replace("#[^\d]#", null, $data));
     }
 
@@ -47,18 +64,23 @@ class Workplace{
 
     // SETTERS
     function set_name($data){
+        $data = sanitize($data);
         $this->name = preg_replace("#[^(\S| )]#", null, $data);
     }
     function set_position($data){
+        $data = sanitize($data);
         $this->position = preg_replace("#[^(\S| )]#", null, $data);
     }
     function set_time_start($data){
+        $data = sanitize($data);
         $this->time_start = preg_replace("#[^(\S| )]#", null, $data);
     }
     function set_time_finish($data){
+        $data = sanitize($data);
         $this->time_finish = preg_replace("#[^(\S| )]#", null, $data);
     }
     function set_job_description($data){
+        $data = sanitize($data);
         $this->job_description = preg_replace("#[^(\S| )]#", null, $data);
     }
 }
@@ -89,27 +111,35 @@ class User{
 
     // SETTERS
     function set_firstname($data){
+        $data = sanitize($data);
         $this->firstname = preg_replace("#[^(\p{L}| )]#", null, $data);
     }
     function set_lastname($data){
+        $data = sanitize($data);
         $this->lastname = preg_replace("#[^\p{L}| ]#", null, $data);
     }
     function set_nationality($data){
+        $data = sanitize($data);
         $this->nationality = preg_replace("#[^\p{L}]#", null, $data);
     }
     function set_sex($data){
+        $data = sanitize($data);
         $this->sex = preg_replace("#[^\w]#", null, $data);
     }
     function set_hschool($data){
+        $data = sanitize($data);
         $this->hschool = preg_replace("#[^\p{L}]#", null, $data);
     }
     function set_hschool_year($data){
+        $data = sanitize($data);
         $this->hschool_year = intval(preg_replace("#[^\d]#", null, $data));
     }
     function set_email($data){
+        $data = sanitize($data);
         $this->email = filter_var($data, FILTER_VALIDATE_EMAIL);
     }
     function set_phone($data){
+        $data = sanitize($data);
         $this->phone = preg_replace("#[^(\+?\d+)]#", null, $data);
     }
     function set_date($data){
@@ -143,6 +173,45 @@ class User{
     }
     function get_date(){
         return $this->date;
+    }
+}
+
+class NewUser{
+    public $username = "";
+    public $pswd = "";
+    public $pswd_repeat = "";
+    public $email = "";
+
+    // SETTERS
+    function set_username($link, $data){
+        $data = sanitize_input_sql($link, $data);
+        $this->username = preg_replace("#[^(\p{L})]#", null, $data);
+    }
+    function set_pswd($link, $data){
+        $data = sanitize_input_sql($link, $data);
+        $this->pswd = preg_replace("#[^\S]#", null, $data);
+    }
+    function set_pswd_repeat($link, $data){
+        $data = sanitize_input_sql($link, $data);
+        $this->pswd_repeat = preg_replace("#[^\S]#", null, $data);
+    }
+    function set_email($link, $data){
+        $data = sanitize($data);
+        $this->email = filter_var($data, FILTER_VALIDATE_EMAIL);
+    }
+    
+    // GETTERS
+    function get_username(){
+        return $this->username;
+    }
+    function get_pswd(){
+        return $this->pswd;
+    }
+    function get_pswd_repeat(){
+        return $this->pswd_repeat;
+    }
+    function get_email(){
+        return $this->email;
     }
 }
 

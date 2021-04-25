@@ -1,5 +1,6 @@
 <?php
 include 'main.php';
+include 'adduser.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +11,7 @@ include 'main.php';
     <link rel="stylesheet" href="style/main.css">
     <link rel="icon" href="style/icon.png">
     <title>Create account</title>
+    <script src="functions.js"></script>
 </head>
 
 <!--PAGE CONTENT-->
@@ -24,9 +26,13 @@ include 'main.php';
             ?>
         </ul>
     </nav>
-
+    <p>
+        <?php
+            echo $new_status;
+        ?>
+    </p>
     <div id="pagecontent">
-        <form action="edit.php">
+        <form method="POST" id="formdata" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <div class="container">
                 <h1>Register</h1>
                 <p>Please fill in this form to create an account.</p>
