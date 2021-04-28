@@ -41,8 +41,8 @@
         <!--Break styling to be added to CSS for making it higher or change the padding of the input-->
         <table id="basic_info_table">
             <tr>
-                <th colspan="4">
-                    <h2>Basic info</h2>
+                <th colspan="3">
+                    <span class="th_header">Basic info</span>
                 </th>
                 <th><button type="submit" class="button" name="submit" style="font-size: 1.2rem;">Save</button></th>
             </tr>
@@ -63,7 +63,7 @@
                 <td><label for="nationality">Nationality:</label></td>
                 <td><input type="text" id="nationality" name="nationality" placeholder="Estonian"  value=<?php echo $from_file->nationality;?>></td>
                 <td><label for="birth">Date of birth:</label></td>
-                <td><input type="date" id="birth" name="birth" max=<?php echo $age_18;?> required placeholder="1992-12-22" value=<?php echo $from_file->date;?>></td>
+                <td><input type="date" id="birth" name="birth" min=<?php echo $age_18;?> required value=<?php echo $from_file->date;?>></td>
             </tr>
             <tr>
                 <td><label for="sex">Sex:</label></td>
@@ -76,7 +76,8 @@
                     $checked_female = "checked";
                 }
                 ?>
-                <td><input type="radio" id="male" name="sex" value="male"  <?php echo $checked_male;?>>
+                <td colspan="3">
+                    <input type="radio" id="male" name="sex" value="male"  <?php echo $checked_male;?>>
                     <label for="male">Male</label><br>
                     <input type="radio" id="female" name="sex" value="female" <?php echo $checked_female;?>>
                     <label for="female">Female</label>
@@ -85,8 +86,8 @@
         </table>
         <table id="education_table">
             <tr>
-                <th colspan="4">
-                    <h2>Education</h2>
+                <th colspan="3">
+                    <span class="th_header">Education</span>
                 </th>
             </tr>
             <tr>
@@ -127,13 +128,13 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><input type="button" id="add_uni" value="Add university studies" onclick="addUniversity(this)"></td>
+                <td colspan="4"><input type="button" id="add_uni" value="Add university studies" onclick="addUniversity(this)"></td>
             </tr>
         </table>
         <table id="work_experience">
             <tr>
-                <th colspan="4">
-                    <h2>Work experience</h2>
+                <th colspan="3">
+                    <span class="th_header">Work experience</span>
                 </th>
             </tr>
             <tr>
