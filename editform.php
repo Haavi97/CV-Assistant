@@ -2,6 +2,8 @@
 include_once 'createedtitable.php';
 
 // HANDLING EDIT CV FORM
+$MAX_UNI = 5;
+$MAX_WORKPLACE = 20;
 $validity_str = "";
 $valid = false;
 $current = new User();
@@ -50,6 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ($current->workplace)->set_time_finish($_POST['time_finish']);
         ($current->workplace)->set_job_description($_POST['job_description']);
     }
+    // Checking extra unis
+    for ($i=0;$i<$MAX_UNI; $i++){
+        $current_uni = 'university'.$i;
+        if (isset($_POST[$current_uni]) && $_POST[$current_uni] !== ""){
+            ($current->university)->set_name($_POST[$current_uni]);
+            ($current->university)->set_study_level($_POST['study_level'.$i]);
+            ($current->university)->set_studies_title($_POST['studies_title'.$i]);
+            ($current->university)->set_uni_graduation($_POST['uni_graduation'.$i]);
+        }
+    }
 
     // Cheking all required fields. If they are empty is because they are not valid
     if (empty($current->get_firstname()) or empty($current->get_lastname()) or empty($current->get_email()) or empty($current->get_phone()) or empty($current->get_date())) {
@@ -88,6 +100,13 @@ if ($valid) {
         }
     } catch (Exception $e) {
         $validity_str = $validity_str . 'Caught exception: ' . $e->getMessage() . "\n";
+    }
+}
+
+function echo_not_null($var){
+    if ($var !== null and $var !== ''){
+        echo "value=";
+        echo $var;
     }
 }
 ?>
