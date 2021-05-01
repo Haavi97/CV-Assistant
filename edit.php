@@ -101,9 +101,9 @@
                     <td><input type="text" id="hschool_year" name="hschool_year" maxlength=4 required placeholder="2005" <?php echo_not_null($from_file->hschool_year);?>>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td><input type="button" id="add_school" value="Add a school" onclick="addSchool(this)"></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <th>University studies</th>
                 </tr>
@@ -157,6 +157,7 @@
                 <tr>
                     <td colspan="4"><textarea name="job_description" id="job_description" maxlength=200 placeholder="Testing stuff" cols="70" rows="5"><?php echo ($from_file->workplace)->job_description;?></textarea></td>
                 </tr>
+                <?php echo additionalWorkplaces($from_file);?>
                 <tr>
                     <td colspan="4"><input type="button" id="add_work" value="Add work experience" onclick="addWorkplace(this)"></td>
                 </tr>

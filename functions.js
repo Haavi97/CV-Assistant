@@ -330,11 +330,13 @@ function addWorkplace(element){
     input_workplace.placeholder = workplace_inner;
 
     position = 'position' + workplaces.toString();
-    position_inner = 'Study level:';
+    position_inner = 'Position: ';
 
     label_position.for = position;
     label_position.innerHTML = position_inner;
     input_position.id = position;
+    input_position.name = position;
+    input_position.placeholder = 'Position';
     
     workplace_year_start =  'time_start' + workplaces.toString();
     workplace_year_inner_start = 'Started:';
@@ -373,6 +375,7 @@ function addWorkplace(element){
     input_jod_description.id = jod_description;
     input_jod_description.name = jod_description;
     input_jod_description.placeholder = jod_description_inner;
+    input_jod_description.value = '';
 
     label_td_workplace.appendChild(label_workplace);
     input_td_workplace.appendChild(input_workplace);

@@ -61,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ($current->additional_unis[$i-2])->set_study_level($_POST['study_level'.$i]);
             ($current->additional_unis[$i-2])->set_studies_title($_POST['studies_title'.$i]);
             ($current->additional_unis[$i-2])->set_uni_graduation($_POST['uni_graduation'.$i]);
-            print_r($current->additional_unis);
         }
     }
     
@@ -69,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     for ($i=1;$i<=$MAX_WORKPLACE; $i++){
         $current_workplace = 'workplace'.$i;
         if (isset($_POST[$current_workplace]) && $_POST[$current_workplace] !== ""){
-            array_push($current->additional_workplaces, new University);
+            array_push($current->additional_workplaces, new Workplace);
             ($current->additional_workplaces[$i-2])->set_name($_POST[$current_workplace]);
             ($current->additional_workplaces[$i-2])->set_position($_POST['position'.$i]);
             ($current->additional_workplaces[$i-2])->set_time_start($_POST['time_start'.$i]);

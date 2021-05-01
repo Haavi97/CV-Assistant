@@ -86,4 +86,37 @@ function additionalUnis($current) {
     }
     $_SESSION['universities'] = $i+2;
 }
+
+function additionalWorkplaces($current) {
+    for ($i=0;$i<count($current->additional_workplaces); $i++){
+        $name = $current->additional_workplaces[$i]->name;
+        $position = $current->additional_workplaces[$i]->position;
+        $time_start = $current->additional_workplaces[$i]->time_start;
+        $time_finish = $current->additional_workplaces[$i]->time_finish;
+        $job_description = $current->additional_workplaces[$i]->job_description;
+        return '<tr>
+                    <th>Workplace '.($i+2).'</th>
+                </tr>
+                <tr>
+                    <td><label for="workplace'.($i+2).'">Work place name</label></td>
+                    <td><input type="text" id="workplace'.($i+2).'" name="workplace'.($i+2).'" maxlength=40 placeholder="ABB" <value="'.$name.'">></td>
+                    <td><label for="position'.($i+2).'">Position:</label></td>
+                    <td><input type="text" id="position'.($i+2).'" name="position'.($i+2).'" maxlength=40 placeholder="Testing engineer" value="'.$position.'"></td>
+                </tr>
+                <tr>
+                    <td><label for="time_start'.($i+2).'">Started</label></td>
+                    <td><input type="text" id="time_start'.($i+2).'" name="time_start'.($i+2).'" placeholder="June 2010" value="'.$time_start.'"></td>
+                    <td><label for="time_finish'.($i+2).'">Finished</label></td>
+                    <td><input type="text" id="time_finish'.($i+2).'" name="time_finish'.($i+2).'" placeholder="Currently working" value="'.$time_finish.'"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><label for="job_description'.($i+2).'">Job description:</label></td>
+                    <td colspan="2"><input type="button" id="ask_feedback" value="Ask feedback from collegues" onclick="window.location="feedback.php";"></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><textarea name="job_description'.($i+2).'" id="job_description'.($i+2).'" maxlength=200 placeholder="Testing stuff" cols="70" rows="5">'.$job_description.'</textarea></td>
+                </tr>';
+    }
+    $_SESSION['workplaces'] = $i+2;
+}
 ?>
