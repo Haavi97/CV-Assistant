@@ -99,9 +99,11 @@ class User{
     // Optional parameters:
     // University
     public University $university;
+    public $additional_unis = array();
 
     // Workplace:
     public Workplace $workplace;
+    public $additional_workplaces = array();
 
     public function __construct()
     {

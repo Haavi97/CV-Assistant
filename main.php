@@ -53,4 +53,37 @@ function login($username, $password){
     $_SESSION["password"] = $password;
     header("Location: index.php");
 }
+
+function additionalUnis($current) {
+    for ($i=0;$i<count($current->additional_unis); $i++){
+        $name = $current->additional_unis[$i]->name;
+        $study_level = $current->additional_unis[$i]->study_level;
+        $studies_title = $current->additional_unis[$i]->studies_title;
+        $grad_year = $current->additional_unis[$i]->uni_graduation;
+        return '<tr>
+                    <th>University '.($i+2).'</th>
+                </tr>
+                <tr>
+                    <td><label for="university'.($i+2).'">University:</label></td>
+                    <td><input type="text" id="university'.($i+2).'" name="university'.($i+2).'" maxlength=40 placeholder="TalTech" value="'.$name.'"></td>
+                    <td><label for="study_level'.($i+2).'">Study level:</label></td>
+                    <td>
+                        <select id="study_level'.($i+2).'" name="study_level'.($i+2).'" value="'.$study_level.'">
+                            <option value="bachelor">Bachelor</option>
+                            <option value="master">Master</option>
+                            <option value="doctorate">Doctorate</option>
+                            <option value="post-doctorate">Post-doctorate</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="studies_title'.($i+2).'">Title:</label></td>
+                    <td><input type="text" id="studies_title'.($i+2).'" name="studies_title'.($i+2).'" maxlength=40 placeholder="Informatics" value="'.$studies_title.'"></td>
+                    <td><label for="uni_graduation'.($i+2).'">Graduation:</label></td>
+                    <td><input type="text" id="uni_graduation'.($i+2).'" name="uni_graduation'.($i+2).'" maxlength=4 placeholder="2009" value="'.$grad_year.'">
+                    </td>
+                </tr>';
+    }
+    $_SESSION['universities'] = $i+2;
+}
 ?>
