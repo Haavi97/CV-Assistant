@@ -18,7 +18,7 @@
 </head>
 
 <!--PAGE CONTENT-->
-<body onload="init()">
+<body>
     <!--NAVIGATION BAR-->
     <nav>
         <img src="style/logo.png" style="padding:20px;" alt="Logo">

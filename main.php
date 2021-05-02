@@ -99,7 +99,7 @@ function additionalWorkplaces($current) {
                 </tr>
                 <tr>
                     <td><label for="workplace'.($i+2).'">Work place name</label></td>
-                    <td><input type="text" id="workplace'.($i+2).'" name="workplace'.($i+2).'" maxlength=40 placeholder="ABB" <value="'.$name.'">></td>
+                    <td><input type="text" id="workplace'.($i+2).'" name="workplace'.($i+2).'" maxlength=40 placeholder="ABB" value="'.$name.'"></td>
                     <td><label for="position'.($i+2).'">Position:</label></td>
                     <td><input type="text" id="position'.($i+2).'" name="position'.($i+2).'" maxlength=40 placeholder="Testing engineer" value="'.$position.'"></td>
                 </tr>
@@ -117,6 +117,6 @@ function additionalWorkplaces($current) {
                     <td colspan="4"><textarea name="job_description'.($i+2).'" id="job_description'.($i+2).'" maxlength=200 placeholder="Testing stuff" cols="70" rows="5">'.$job_description.'</textarea></td>
                 </tr>';
     }
-    $_SESSION['workplaces'] = $i+2;
+    $_SESSION['workplaces'] = $i+3;
 }
 ?>
