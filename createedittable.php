@@ -1,4 +1,5 @@
 <?php
+include_once 'dbconnection.php';
 
 // Create main CVs table if it does not exists
 $query = "CREATE TABLE IF NOT EXISTS UsersCVSMain(
@@ -53,7 +54,7 @@ $query = "CREATE TABLE IF NOT EXISTS UsersCVSWorkplace(
     time_start VARCHAR(20),
     time_finish VARCHAR(20),
     job_description VARCHAR(200),
-    PRIMARY KEY (ENTRY_ID),
+    PRIMARY KEY (ENTRY_ID)
 )";
 
 $result = mysqli_query($link, $query);

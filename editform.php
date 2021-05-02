@@ -1,5 +1,6 @@
 <?php
-include_once 'createedtitable.php';
+include_once 'dbconnection.php';
+include_once 'createedittable.php';
 
 // HANDLING EDIT CV FORM
 $MAX_UNI = 5;
@@ -30,22 +31,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $day = intval($day);
     $year = intval($year);
 
-    if (checkdate($month, $day, $year)){
-        if ($year <= $year_t){
+    if (checkdate($month, $day, $year)) {
+        if ($year <= $year_t) {
             $current->set_date(implode("-", array($year, $month, $day)));
         } else {
             $current->date = null;
         }
-    }else {
+    } else {
         $current->date = null;
     }
-    if (isset($_POST['university']) && $_POST['university'] !== ""){
+    if (isset($_POST['university']) && $_POST['university'] !== "") {
         ($current->university)->set_name($_POST['university']);
         ($current->university)->set_study_level($_POST['study_level']);
         ($current->university)->set_studies_title($_POST['studies_title']);
         ($current->university)->set_uni_graduation($_POST['uni_graduation']);
     }
-    if (isset($_POST['workplace']) && $_POST['workplace'] !== ""){
+    if (isset($_POST['workplace']) && $_POST['workplace'] !== "") {
         ($current->workplace)->set_name($_POST['workplace']);
         ($current->workplace)->set_position($_POST['position']);
         ($current->workplace)->set_time_start($_POST['time_start']);
@@ -53,28 +54,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ($current->workplace)->set_job_description($_POST['job_description']);
     }
     // Checking extra unis
-    for ($i=2;$i<=$MAX_UNI; $i++){
-        $current_uni = 'university'.$i;
-        if (isset($_POST[$current_uni]) && $_POST[$current_uni] !== ""){
+    for ($i = 2; $i <= $MAX_UNI; $i++) {
+        $current_uni = 'university' . $i;
+        if (isset($_POST[$current_uni]) && $_POST[$current_uni] !== "") {
             array_push($current->additional_unis, new University);
-            ($current->additional_unis[$i-2])->set_name($_POST[$current_uni]);
-            ($current->additional_unis[$i-2])->set_study_level($_POST['study_level'.$i]);
-            ($current->additional_unis[$i-2])->set_studies_title($_POST['studies_title'.$i]);
-            ($current->additional_unis[$i-2])->set_uni_graduation($_POST['uni_graduation'.$i]);
+            ($current->additional_unis[$i - 2])->set_name($_POST[$current_uni]);
+            ($current->additional_unis[$i - 2])->set_study_level($_POST['study_level' . $i]);
+            ($current->additional_unis[$i - 2])->set_studies_title($_POST['studies_title' . $i]);
+            ($current->additional_unis[$i - 2])->set_uni_graduation($_POST['uni_graduation' . $i]);
         }
     }
-    
+
     // Checking extra workplaces
-    for ($i=1;$i<=$MAX_WORKPLACE; $i++){
-        $current_workplace = 'workplace'.$i;
-        if (isset($_POST[$current_workplace]) && $_POST[$current_workplace] !== ""){
+    for ($i = 1; $i <= $MAX_WORKPLACE; $i++) {
+        $current_workplace = 'workplace' . $i;
+        if (isset($_POST[$current_workplace]) && $_POST[$current_workplace] !== "") {
             array_push($current->additional_workplaces, new Workplace);
-            ($current->additional_workplaces[$i-2])->set_name($_POST[$current_workplace]);
-            ($current->additional_workplaces[$i-2])->set_position($_POST['position'.$i]);
-            ($current->additional_workplaces[$i-2])->set_time_start($_POST['time_start'.$i]);
-            ($current->additional_workplaces[$i-2])->set_time_finish($_POST['time_finish'.$i]);
-            ($current->additional_workplaces[$i-2])->set_job_description($_POST['job_description'.$i]);
-            print_r($current->additional_workplaces);
+            ($current->additional_workplaces[$i - 2])->set_name($_POST[$current_workplace]);
+            ($current->additional_workplaces[$i - 2])->set_position($_POST['position' . $i]);
+            ($current->additional_workplaces[$i - 2])->set_time_start($_POST['time_start' . $i]);
+            ($current->additional_workplaces[$i - 2])->set_time_finish($_POST['time_finish' . $i]);
+            ($current->additional_workplaces[$i - 2])->set_job_description($_POST['job_description' . $i]);
+            // print_r($current->additional_workplaces);
         }
     }
 
@@ -89,8 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // if data is valid proceed to save to file and echo to html
 if ($valid) {
+    $new_status = add_basic_info_to_db($link, $current);
     $dir = 'data';
-    $file = $dir . '/'. $_SESSION["username"] . '.json';
+    $file = $dir . '/' . $_SESSION["username"] . '.json';
     try {
         if (!file_exists($dir)) {
             mkdir($dir, 0777);
@@ -110,7 +112,7 @@ if ($valid) {
                 $success = true;
             }
         }
-        if ($success){
+        if ($success) {
             $validity_str = "<span style=\"color:green\">Saved data.</span>";
         }
     } catch (Exception $e) {
@@ -118,10 +120,95 @@ if ($valid) {
     }
 }
 
-function echo_not_null($var){
-    if ($var !== null and $var !== ''){
+function echo_not_null($var)
+{
+    if ($var !== null and $var !== '') {
         echo "value=";
         echo $var;
     }
 }
+
+function add_basic_info_to_db($link, $current)
+{
+    // echo $current;
+    $exists_query = mysqli_prepare($link, "SELECT EXISTS(SELECT * from UsersCVSMain WHERE ID=?)");
+    $id = intval(get_user_id($link));
+    mysqli_stmt_bind_param($exists_query, "i", $id);
+    $exists = mysqli_stmt_execute($exists_query);
+    if ($exists) {
+        mysqli_stmt_close($exists_query);
+        $query = mysqli_prepare($link, "UPDATE UsersCVSMain
+                                    SET firstname=?, lastname=?, nationality=?, sex=?, 
+                                    hschool=?, hschool_year=?, email=?, phone=?, bday=?
+                                    WHERE ID=?");
+        mysqli_stmt_bind_param(
+            $query,
+            "sssssssssi",
+            $current->get_firstname(),
+            $current->get_lastname(),
+            $current->get_nationality(),
+            $current->get_sex(),
+            $current->get_hschool(),
+            $current->get_hschool_year(),
+            $current->get_email(),
+            $current->get_phone(),
+            $current->get_date(),
+            $id
+        );
+        $result = mysqli_stmt_execute($query);
+        // Prompt success message
+        if ($result) {
+            return "<span style=\"color:green\">Succesfully updated basic params</span>";
+        } else {
+            return "<span style=\"color:red\">Failed to set basic params</span>";
+        }
+        mysqli_stmt_close($query);
+    } else {
+        mysqli_stmt_close($exists_query);
+        $query = mysqli_prepare($link, "INSERT INTO UsersCVSMain
+                                    (ID, username, firstname, lastname, nationality, sex, 
+                                    hschool, hschool_year, email, phone, bday)
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param(
+            $query,
+            "issssssssss",
+            $id,
+            $_SESSION['username'],
+            $current->get_firstname(),
+            $current->get_lastname(),
+            $current->get_nationality(),
+            $current->get_sex(),
+            $current->get_hschool(),
+            $current->get_hschool_year(),
+            $current->get_email(),
+            $current->get_phone(),
+            $current->get_date()
+        );
+        $result = mysqli_stmt_execute($query);
+        // Prompt success message
+        if ($result) {
+            return "<span style=\"color:green\">Succesfully inserted new basic params</span>";
+        } else {
+            return "<span style=\"color:red\">Failed to insert basic params</span>";
+        }
+        mysqli_stmt_close($query);
+    }
+}
+
+function get_user_id($link)
+{
+    $query = mysqli_prepare($link, "SELECT ID
+                                    FROM Users WHERE username=?");
+    mysqli_stmt_bind_param($query, "s", $_SESSION['username']);
+    $result = mysqli_stmt_execute($query);
+    mysqli_stmt_bind_result($query, $id);
+    if ($result){
+        mysqli_stmt_fetch($query);
+    } else {
+        die('Username not in table. Something weird happening');
+    }
+    return $id;
+}
+
+mysqli_close($link);
 ?>
