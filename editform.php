@@ -6,6 +6,7 @@ include_once 'createedittable.php';
 $MAX_UNI = 5;
 $MAX_WORKPLACE = 20;
 $validity_str = "";
+$uni_sql = "";
 $valid = false;
 $current = new User();
 list($year_t, $month_t, $day_t) = explode("-", date('Y-m-d'));
@@ -45,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ($current->university)->set_study_level($_POST['study_level']);
         ($current->university)->set_studies_title($_POST['studies_title']);
         ($current->university)->set_uni_graduation($_POST['uni_graduation']);
+        $uni_sql = add_primary_uni_info_to_db($link, $current);
     }
     if (isset($_POST['workplace']) && $_POST['workplace'] !== "") {
         ($current->workplace)->set_name($_POST['workplace']);
@@ -128,10 +130,24 @@ function echo_not_null($var)
     }
 }
 
+function get_user_id($link)
+{
+    $query = mysqli_prepare($link, "SELECT ID
+                                    FROM Users WHERE username=?");
+    mysqli_stmt_bind_param($query, "s", $_SESSION['username']);
+    $result = mysqli_stmt_execute($query);
+    mysqli_stmt_bind_result($query, $id);
+    if ($result){
+        mysqli_stmt_fetch($query);
+    } else {
+        die('Username not in table. Something weird happening');
+    }
+    return $id;
+}
+
 function add_basic_info_to_db($link, $current)
 {
-    // echo $current;
-    $exists_query = mysqli_prepare($link, "SELECT EXISTS(SELECT * from UsersCVSMain WHERE ID=?)");
+    $exists_query = mysqli_prepare($link, "SELECT EXISTS(SELECT * FROM UsersCVSMain WHERE ID=?)");
     $id = intval(get_user_id($link));
     mysqli_stmt_bind_param($exists_query, "i", $id);
     $exists = mysqli_stmt_execute($exists_query);
@@ -195,19 +211,61 @@ function add_basic_info_to_db($link, $current)
     }
 }
 
-function get_user_id($link)
+function add_primary_uni_info_to_db($link, $current)
 {
-    $query = mysqli_prepare($link, "SELECT ID
-                                    FROM Users WHERE username=?");
-    mysqli_stmt_bind_param($query, "s", $_SESSION['username']);
-    $result = mysqli_stmt_execute($query);
-    mysqli_stmt_bind_result($query, $id);
-    if ($result){
-        mysqli_stmt_fetch($query);
+    $exists_query = mysqli_prepare($link, "SELECT EXISTS(SELECT * FROM UsersCVSUni WHERE ID=? AND entry_number=1)");
+    $id = intval(get_user_id($link));
+    // echo 'id: '.$id;
+    mysqli_stmt_bind_param($exists_query, "i", $id);
+    $exists = mysqli_stmt_execute($exists_query);
+    // $exists = 0;
+    // echo 'There exists: '.$exists;
+    if ($exists) {
+        mysqli_stmt_close($exists_query);
+        $query_uni = mysqli_prepare($link, "UPDATE UsersCVSUni
+                                    SET uni_name=?, study_level=?, studies_title=?, uni_graduation=?
+                                    WHERE ID=? AND entry_number=1");
+        mysqli_stmt_bind_param(
+            $query_uni,
+            "ssssi",
+            ($current->university)->get_name(),
+            ($current->university)->get_study_level(),
+            ($current->university)->get_studies_title(),
+            ($current->university)->get_uni_graduation(),
+            $id
+        );
+        $result = mysqli_stmt_execute($query_uni);
+        // Prompt success message
+        if ($result) {
+            return "<span style=\"color:green\">Succesfully updated primary uni params</span>";
+        } else {
+            return "<span style=\"color:red\">Failed to set primary uni params</span>";
+        }
+        mysqli_stmt_close($query_uni);
     } else {
-        die('Username not in table. Something weird happening');
+        mysqli_stmt_close($exists_query);
+        $query_uni = mysqli_prepare($link, "INSERT INTO UsersCVSUni
+                                    (ID, username, entry_number, uni_name, study_level, studies_title, uni_graduation)
+                                    VALUES (?, ?, 1, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param(
+            $query_uni,
+            "isssss",
+            $id,
+            $_SESSION['username'],
+            ($current->university)->get_name(),
+            ($current->university)->get_study_level(),
+            ($current->university)->get_studies_title(),
+            ($current->university)->get_uni_graduation()
+        );
+        $result = mysqli_stmt_execute($query_uni);
+        // Prompt success message
+        if ($result) {
+            return "<span style=\"color:green\">Succesfully inserted new primary uni params</span>";
+        } else {
+            return "<span style=\"color:red\">Failed to insert primary uni params</span>";
+        }
+        mysqli_stmt_close($query_uni);
     }
-    return $id;
 }
 
 mysqli_close($link);

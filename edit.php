@@ -36,6 +36,8 @@
             echo $validity_str;
             echo '<br>';
             echo $new_status;
+            echo '<br>';
+            echo $uni_sql;
             ?>
         </p>
         <form method="POST" id="formdata" action="<?php echo $_SERVER['PHP_SELF']; ?>">

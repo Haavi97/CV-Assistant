@@ -32,11 +32,6 @@ $query = "CREATE TABLE IF NOT EXISTS UsersCVSUni(
     study_level VARCHAR(20),
     studies_title VARCHAR(20),
     uni_graduation VARCHAR(20),
-    hschool VARCHAR(20),
-    hschool_year VARCHAR(20),
-    email VARCHAR(20),
-    phone VARCHAR(20),
-    bday VARCHAR(20),
     PRIMARY KEY (ENTRY_ID)
 )";
 
