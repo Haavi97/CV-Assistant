@@ -268,5 +268,64 @@ function add_primary_uni_info_to_db($link, $current)
     }
 }
 
+function add_unis_info_to_db($link, $current, $i)
+{
+    $exists_query = mysqli_prepare($link, "SELECT EXISTS(SELECT * FROM UsersCVSUni WHERE ID=? AND entry_number=?)");
+    $id = intval(get_user_id($link));
+    // echo 'id: '.$id;
+    mysqli_stmt_bind_param($exists_query, "ii", $id, $i);
+    $exists = mysqli_stmt_execute($exists_query);
+    // $exists = 0;
+    // echo 'There exists: '.$exists;
+    if ($exists) {
+        mysqli_stmt_close($exists_query);
+        $query_uni = mysqli_prepare($link, "UPDATE UsersCVSUni
+                                    SET uni_name=?, study_level=?, studies_title=?, uni_graduation=?
+                                    WHERE ID=? AND entry_number=?");
+        mysqli_stmt_bind_param(
+            $query_uni,
+            "ssssii",
+            ($current->university)->get_name(),
+            ($current->university)->get_study_level(),
+            ($current->university)->get_studies_title(),
+            ($current->university)->get_uni_graduation(),
+            $id,
+            $i
+        );
+        $result = mysqli_stmt_execute($query_uni);
+        // Prompt success message
+        if ($result) {
+            return "<span style=\"color:green\">Succesfully updated primary uni params</span>";
+        } else {
+            return "<span style=\"color:red\">Failed to set primary uni params</span>";
+        }
+        mysqli_stmt_close($query_uni);
+    } else {
+        mysqli_stmt_close($exists_query);
+        $query_uni = mysqli_prepare($link, "INSERT INTO UsersCVSUni
+                                    (ID, username, entry_number, uni_name, study_level, studies_title, uni_graduation)
+                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param(
+            $query_uni,
+            "isissss",
+            $id,
+            $_SESSION['username'],
+            $i,
+            ($current->university)->get_name(),
+            ($current->university)->get_study_level(),
+            ($current->university)->get_studies_title(),
+            ($current->university)->get_uni_graduation()
+        );
+        $result = mysqli_stmt_execute($query_uni);
+        // Prompt success message
+        if ($result) {
+            return "<span style=\"color:green\">Succesfully inserted new primary uni params</span>";
+        } else {
+            return "<span style=\"color:red\">Failed to insert primary uni params</span>";
+        }
+        mysqli_stmt_close($query_uni);
+    }
+}
+
 mysqli_close($link);
 ?>
