@@ -55,3 +55,6 @@ Used scripts:
 - [```onlylogged.php```](onlylogged.php)
 - [```recommend.php```](recommend.php)
 - [```functions.js```](functions.js)
+
+## Class file[(```user.php```)](user.php)
+There is an extra script used in several others (```main.php```, ```editform.php```,  ```createedittable.php```, ```adduser.php```, ```handlelogin.php```) That contains the description of several classes (```User```, ```NewUser```, ```University```, ```Workplace```) that are use for data handling of the different forms contained in the webpage.
