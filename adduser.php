@@ -7,7 +7,7 @@ include_once "dbconnection.php";
 $query = "CREATE TABLE IF NOT EXISTS Users(
     ID INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(20) NOT NULL,
-    pswd VARCHAR(20) NOT NULL,
+    pswd VARCHAR(64) NOT NULL,
     PRIMARY KEY (ID),
     UNIQUE (username)
 )";
@@ -21,8 +21,8 @@ $valid = false;
 $current = new NewUser();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $current->set_username($link, $_POST['reg_name']);
-    $current->set_pswd($link, $_POST['psw']);
-    $current->set_pswd_repeat($link, $_POST['psw-repeat']);
+    $current->set_pswd($link, hash("sha256", $_POST['psw']));
+    $current->set_pswd_repeat($link, hash("sha256", $_POST['psw-repeat']));
 
 
     // Cheking all required fields. If they are empty is because they are not valid
@@ -51,7 +51,7 @@ if ($valid) {
         $new_status = "<span style=\"color:green\">Succesfully created account</span>" . 
                         "<script>newAccountSuccess()</script>";
     } else {
-        $new_status = "<span style=\"color:red\">Invalid username or password. </span>";
+        $new_status = "<span style=\"color:red\">Username already exists.".$current->get_pswd()."</span>";
     }
 }
 

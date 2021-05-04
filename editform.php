@@ -174,9 +174,9 @@ function add_basic_info_to_db($link, $current)
         $result = mysqli_stmt_execute($query);
         // Prompt success message
         if ($result) {
-            return "<span style=\"color:green\">Succesfully updated basic params</span>";
+            return "<span style=\"color:green\">Succesfully updated basic information</span>";
         } else {
-            return "<span style=\"color:red\">Failed to set basic params</span>";
+            return "<span style=\"color:red\">Failed to set basic information</span>";
         }
         mysqli_stmt_close($query);
     } else {
@@ -203,9 +203,9 @@ function add_basic_info_to_db($link, $current)
         $result = mysqli_stmt_execute($query);
         // Prompt success message
         if ($result) {
-            return "<span style=\"color:green\">Succesfully inserted new basic params</span>";
+            return "<span style=\"color:green\">Succesfully inserted new basic information</span>";
         } else {
-            return "<span style=\"color:red\">Failed to insert basic params</span>";
+            return "<span style=\"color:red\">Failed to insert basic information</span>";
         }
         mysqli_stmt_close($query);
     }

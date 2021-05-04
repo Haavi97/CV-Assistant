@@ -50,7 +50,7 @@ $page_footer = '
 function login($username, $password){
     // This script assumes already validated data
     $_SESSION["username"] = $username;
-    $_SESSION["password"] = $password;
+    // $_SESSION["password"] = $password; this would be a security issue
     header("Location: index.php");
 }
 

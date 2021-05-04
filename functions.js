@@ -98,6 +98,11 @@ function newAccountSuccess(){
     window.open('index.php', _self);
 }
 
+function loginFail(){
+    window.alert('Failed to login');
+    window.open('login.php', _self);
+}
+
 function addSchool(element){
     var schools = sessionStorage.getItem('schools');
     if (schools == null){
